@@ -9,8 +9,8 @@ export class App extends React.Component {
        <div>
         <header>
           <h1>React Starterify {version}</h1>
-          <Link to="/about">About</Link>
-          <Link to="/poweredby">Powered by</Link>
+          {/* <Link to="/about">About</Link>
+          <Link to="/poweredby">Powered by</Link> */}
         </header>
         <section>
           { 'Welcome to React Starterify'}
