@@ -13,14 +13,7 @@ class CouvertureComp extends React.Component{
         }
     }
 
-    componentDidMount(){
-        fetch('http://localhost:3000/profil/')
-        .then(resultat => resultat.json())
-        .then(data => this.setState({data}));
-        if (this.state.data)
-            this.setState.hasImg = true;
-        
-    }
+   
     
 	render(){
 		return(
