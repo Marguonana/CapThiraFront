@@ -1,4 +1,6 @@
 import React from 'react';
+import toastr from 'reactjs-toastr';
+import 'reactjs-toastr/lib/toast.css';
 import Radium from 'radium';
 require('underscore');
 
@@ -72,10 +74,12 @@ class DisplayPhotoComp extends React.Component{
             mainPost : {
                 marginTop: '2%',
                 paddingTop: '10px',
-                height: '58%',
+                marginLeft:'auto',
+                marginRight: 'auto',
                 width: '95%',
                 backgroundColor: '#F2F2F1',
-                boxShadow: '5px -2px 5px 5px #eee'
+                // boxShadow: '5px -2px 5px 5px #eee'
+                border: '1px solid grey'
 
 
             },
@@ -83,8 +87,9 @@ class DisplayPhotoComp extends React.Component{
                 marginLeft: 'auto',
                 marginRight: 'auto',
                 marginTop: '3%'
-            }
-        };
+            },
+
+           };
       }
 
     encodeImg(res){
@@ -98,10 +103,12 @@ class DisplayPhotoComp extends React.Component{
                 var img = new Buffer(res[i].img.data, "binary").toString("base64");
                 if (img.substr(0, "dataimage/jpegbase64".length).includes("jpeg")){
                     prefix = "data:image/jpeg;base64,";
+                    img = img.substr("dataimage/jpegbase64".length, img.length);
                 }else{
                     prefix = "data:image/png;base64,";
+                    console.log(img)
+                    img = img.substr("dataimage/pngbase64".length, img.length+2);
                 }
-                img = img.substr("dataimage/jpegbase64".length, img.length);
                 var dataUri = prefix + img;
                 res[i].img.data = dataUri;
             }
@@ -113,7 +120,7 @@ class DisplayPhotoComp extends React.Component{
 
     getPhoto(){
         var myHeaders = new Headers();
-        fetch(new Request('http://localhost:3000/get', {
+        fetch(new Request('http://localhost:3000/images/', {
             method: 'GET',
             cache: 'default'
           }),myHeaders)
@@ -121,6 +128,24 @@ class DisplayPhotoComp extends React.Component{
         .then(resultat => this.encodeImg(resultat))
         if (this.state.data)
             this.setState.hasImg = true;
+    }
+
+    savePhoto = (photo) => {
+        const requestOptions = {
+          method: 'POST',
+          body: JSON.stringify(photo),
+          headers: {"Content-Type": "application/json"}
+        };
+        console.log(photo.taille)
+        fetch("http://localhost:3000/images/post/", requestOptions).then((response) => {
+          response.json();
+        }).then((result) => {
+          console.log(result);
+          toastr.info('Photo ajouté avec succès');
+          window.location.reload();
+        }).catch((error) => {
+          toastr.error('Erreur d\'envoie des params');
+        });
     }
 
     componentDidMount(){
@@ -132,22 +157,33 @@ class DisplayPhotoComp extends React.Component{
             method: 'DELETE'
           };
         
-          fetch("http://localhost:3000/delete/" + el._id, requestOptions).then((response) => {
-            return response.json();
+          fetch("http://localhost:3000/images/supprimer/" + el._id, requestOptions).then((response) => {
+            response.json();
           }).then((result) => {
             console.log(result);
+            window.location.reload();
           }).catch((error) => {
-            console.error('Erreur d\'envoie des params');
+            console.error('Erreur d\'envoie des params','',{displayDuration:200});
           
           });
       }
 
       handleSelectedFile = event => {
-        this.setState({
-          selectedFile: event.target.files[0],
-          loaded: 0,
-        })
-        console.log(event.target.file[0].name)
+        var imageToSend = event.target.files[0]; 
+        var reader = new FileReader();
+        reader.onload = () => {
+            dataImg.img = reader.result;
+            console.log(dataImg)
+            this.savePhoto(dataImg)
+        }
+        if (imageToSend) {
+            console.log(imageToSend);
+            var dataImg = {img: null,titre:imageToSend.name.substr(0,imageToSend.name.length-4),datePublication: new Date(), idUser:1, taille: imageToSend.size };
+            reader.readAsDataURL(imageToSend);
+        }else{
+            toastr.info('Aucun element n\'a été rajouté','',{displayDuration:200})
+        }
+       
       }
 
     
@@ -174,14 +210,14 @@ class DisplayPhotoComp extends React.Component{
             return(
                 <div className="main-posts" style={styles.mainPost}>
                     <Container>
-                        <Row>{colImage}
-                           
+                        <Row>
+                            <Row>{colImage}</Row>
+                            <Row><form method="post" encType="multipart/form-data" action="" style={styles.ajouterPhoto}>
+                                    <input style={styles.button} type='file' accept='image/png,image/jpeg' name='ajouter' onChange={this.handleSelectedFile}></input>
+                                </form>
+                            </Row>
                         </Row>
-                        <Row><form method="post" encType="multipart/form-data" action="http//localhost:3000/post" style={styles.ajouterPhoto}>
-                                <input type='file' accept='image/png,image/jpeg' name='ajouter' onChange={this.handleSelectedFile}></input>
-                                <input type="submit" value="Valider" />
-                            </form>
-                        </Row>
+                        
                     </Container>
                 </div>
             )

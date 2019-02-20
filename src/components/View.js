@@ -16,7 +16,7 @@ class View extends React.Component{
                 <DisplayPhotoComp />
             </div>
         )
-        
+    
     }
 }
 

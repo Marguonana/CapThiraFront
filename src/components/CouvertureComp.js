@@ -21,11 +21,14 @@ class CouvertureComp extends React.Component{
                 height: '200px',
                 width: '95%',
                 boxShadow: '10px 5px 5px #eee',
-                backgroundColor: '#F2F2F1'
+                backgroundColor: '#F2F2F1',
+                marginLeft:'auto',
+                marginRight:'auto'
             },
             textStyle : {
                 marginRight: 'auto',
-                marginLeft: 'auto'
+                marginLeft: 'auto',
+                marginTop:'20px'
             }
         };
     }

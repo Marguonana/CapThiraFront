@@ -32,6 +32,7 @@
     "path": "^0.12.7",
     "postcss-loader": "^3.0.0",
     "radium": "^0.25.1",
+    "reactjs-toastr": "^1.1.0",
     "reactstrap": "^7.1.0",
     "resolve-url-loader": "^3.0.0",
     "sass-loader": "^7.1.0",
