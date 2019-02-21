@@ -41,27 +41,32 @@ class DisplayPhotoComp extends React.Component{
         }
     }
 
+
+
+
+    /**
+     *  Permet de mettre le bon entête sur les photos en base64 afin de pouvoir les lire convenablement
+     * @param {*} res 
+     */
+
     encodeImg(res){
-        console.log(res)
+        // console.log(res)
         for(var i = 0; i < res.length; i++){
             if (res[i].img.data){
-                var prefix = "data:image/jpeg;base64,"; // Prefix par default
-                /**
-                 * Gestion du prefix. 
-                 */
+                var prefix = "data:image/jpeg;base64,"; // Prefix par defaut
+                // Gestion du prefix. 
                 var img = new Buffer(res[i].img.data, "binary").toString("base64");
                 if (img.substr(0, "dataimage/jpegbase64".length).includes("jpeg")){
-                    prefix = "data:image/jpeg;base64,";
+                    img = img.substr("dataimage/jpegbase64".length, img.length);
                 }else{
                     prefix = "data:image/png;base64,";
+                    img = img.substr("dataimage/pngbase64".length, img.length);
                 }
-                img = img.substr("dataimage/jpegbase64".length, img.length);
                 var dataUri = prefix + img;
                 res[i].img.data = dataUri;
             }
         } 
         this.setState({album: res});
-        console.log(this.state);
         
     }
 
