@@ -48,16 +48,6 @@ class CouvertureComp extends React.Component{
                                 <p> Mettre une description.</p>
                             </div>
                         </div>
-                        {/* <div className="row" >
-                            <form action="" method="post" className="subscribe-form">
-                                <div className="col-md-offset-4 col-md-3 col-sm-8">
-                                    <input type="email" id="chercherAmi" placeholder="Chercher un ami..." />
-                                </div>
-                                <div className="col-md-5 col-sm-4">
-                                    <input type="submit" id="subscribe-submit" className="button white" value="Trouver" />
-                                </div>
-                            </form>
-                        </div> */}
                     </div>  
                 </div>
             </div>
