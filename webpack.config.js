@@ -25,18 +25,18 @@ module.exports = {
           // options: { publicPath: '../'} },
           { loader: "css-loader",
             options:{importLoaders: 1}  },          
-          {
-            loader: 'postcss-loader',
-            options: {
-            sourceMap: true,
-            config: {
-              ctx: {
-              cssnano: {},
-              autoprefixer: {}
-              }
-            }
-            }
-          },
+          // {
+          //   loader: 'postcss-loader',
+          //   options: {
+          //   sourceMap: true,
+          //   config: {
+          //     ctx: {
+          //     cssnano: {},
+          //     autoprefixer: {}
+          //     }
+          //   }
+          //   }
+          // },
           {
             loader: 'resolve-url-loader' // améliore la résolution des chemins relatifs 
             // (utile par exemple quand une librairie tierce fait référence à des images ou des fonts situés dans son propre dossier)
