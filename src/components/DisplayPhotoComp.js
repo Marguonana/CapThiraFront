@@ -1,7 +1,10 @@
 import React from 'react';
+import toastr from 'reactjs-toastr';
+import 'reactjs-toastr/lib/toast.css';
+import Radium from 'radium';
 require('underscore');
-import { Container, Row, Col } from 'reactstrap';
 
+import { Container, Row, Col } from 'reactstrap';
 class DisplayPhotoComp extends React.Component{
     constructor(props){
         super(props)
@@ -79,44 +82,42 @@ class DisplayPhotoComp extends React.Component{
     }
     
     render = function(){
-            console.log(this.state.album)
-            var colImage = this.state.album.map(function(el){
-                return (
-                <Col  style={{height:'auto', weight:20 + '%'}} >
-                    <img src={el.img.data} alt="" style={{height:150+'px', weight:150 + 'px'}}/>
-                    <div className="titre-image">
-                        <h4><i href="#">{el.titre}</i></h4>
-                    </div>
-                    <div className="post-hover text-center">
-                        <div className="inside">
-                            <i className="fa fa-plus"></i>
-                            <span className="date">{el.datePublication}</span>
-                            <h4><a href="#">Titre d'un commentaire?</a></h4>
-                            <p>Cum sociis natoque penatibus et magnis dis parturient</p>
-                        </div>
-                    </div>
-                </Col>
-                )
-            });
-    
-            console.log(colImage);
-    
-            return(
-                <div className="main-posts">
-                    <Container>
-                        <Row>{colImage}
-                           
-                        </Row>
-                        <Row>
-    
-                        </Row>
-                    </Container>
+       
+        const styles = this.getStyles();
+        var colImage = this.state.album.map( (el,index) => {
+            return ( 
+                <Col key={index} style={styles.colStyle} >
+                <img key={index + '_img'} src={el.img.data} alt="" style={styles.imageStyle}/>
+                <div className="titre-image">
+                    <h4>{el.titre}<i key={'delete_' + index} onClick={(e) => this.handleClick(e, el)} className="fa fa-times" style={styles.deleteButton}></i></h4>
                 </div>
+                <div className="post-hover text-center">
+                    <div className="inside">
+                        <span className="date">{el.datePublication}</span>
+                    </div>
+                </div>
+            </Col>
             )
-        
+        });
 
-        }
+        return(
+            <div className="main-posts" style={styles.mainPost}>
+                <Container>
+                    <Row>
+                        <Row>{colImage}</Row>
+                        <Row><form method="post" encType="multipart/form-data" action="" style={styles.ajouterPhoto}>
+                                <input style={styles.button} type='file' accept='image/png,image/jpeg' name='ajouter' onChange={this.handleSelectedFile}></input>
+                            </form>
+                        </Row>
+                    </Row>
+                    
+                </Container>
+            </div>
+        )
     
+
+    }
+
 }
 
-export default DisplayPhotoComp;
+export default Radium(DisplayPhotoComp);
