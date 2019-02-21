@@ -118,6 +118,27 @@ class DisplayPhotoComp extends React.Component{
             this.setState.hasImg = true;
     }
 
+    /** ---------------- DELETE */
+
+    
+    handleClick = (e, el) => {
+        const requestOptions = {
+          method: 'DELETE'
+        };
+      
+        fetch("http://localhost:3000/images/supprimer/" + el._id, requestOptions).then((response) => {
+          response.json();
+        }).then((result) => {
+          console.log(result);
+          window.location.reload();
+        }).catch((error) => {
+          console.error('Erreur d\'envoie des params','',{displayDuration:200});
+        
+        });
+    }
+
+    /** ---------------- Component */
+
     componentDidMount(){
         this.getPhoto();        
     }
