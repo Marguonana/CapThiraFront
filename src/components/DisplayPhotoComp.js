@@ -3,6 +3,7 @@ import toastr from 'reactjs-toastr';
 import 'reactjs-toastr/lib/toast.css';
 import Radium from 'radium';
 require('underscore');
+require('../lib/style.js');
 
 import { Container, Row, Col } from 'reactstrap';
 class DisplayPhotoComp extends React.Component{
