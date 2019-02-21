@@ -42,13 +42,46 @@ class DisplayPhotoComp extends React.Component{
         }
     }
 
+    /** ---------------- POST */
+
+    
+    handleClick = (e, el) => {
+        const requestOptions = {
+          method: 'DELETE'
+        };
+      
+        fetch("http://localhost:3000/images/supprimer/" + el._id, requestOptions).then((response) => {
+          response.json();
+        }).then((result) => {
+          console.log(result);
+          window.location.reload();
+        }).catch((error) => {
+          console.error('Erreur d\'envoie des params','',{displayDuration:200});
+        
+        });
+    }
+
+    
+    savePhoto = (photo) => {
+        const requestOptions = {
+          method: 'POST',
+          body: JSON.stringify(photo),
+          headers: {"Content-Type": "application/json"}
+        };
+        console.log(photo.taille)
+        fetch("http://localhost:3000/images/post/", requestOptions).then((response) => {
+          response.json();
+        }).then((result) => {
+          console.log(result);
+          toastr.info('Photo ajouté avec succès');
+          window.location.reload();
+        }).catch((error) => {
+          toastr.error('Erreur d\'envoie des params');
+        });
+    }
 
 
-
-    /**
-     *  Permet de mettre le bon entête sur les photos en base64 afin de pouvoir les lire convenablement
-     * @param {*} res 
-     */
+   /** ------------------GET  */
 
     encodeImg(res){
         // console.log(res)
@@ -73,7 +106,7 @@ class DisplayPhotoComp extends React.Component{
 
     getPhoto(){
         var myHeaders = new Headers();
-        fetch(new Request('http://localhost:3000/', {
+        fetch(new Request('http://localhost:3000/images/', {
             method: 'GET',
             cache: 'default'
           }),myHeaders)
