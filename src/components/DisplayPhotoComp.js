@@ -45,23 +45,25 @@ class DisplayPhotoComp extends React.Component{
     /** ---------------- POST */
 
     
-    handleClick = (e, el) => {
-        const requestOptions = {
-          method: 'DELETE'
-        };
-      
-        fetch("http://localhost:3000/images/supprimer/" + el._id, requestOptions).then((response) => {
-          response.json();
-        }).then((result) => {
-          console.log(result);
-          window.location.reload();
-        }).catch((error) => {
-          console.error('Erreur d\'envoie des params','',{displayDuration:200});
-        
-        });
-    }
 
-    
+    handleSelectedFile = event => {
+        var imageToSend = event.target.files[0]; 
+        var reader = new FileReader();
+        reader.onload = () => {
+            dataImg.img = reader.result;
+            console.log(dataImg)
+            this.savePhoto(dataImg)
+        }
+        if (imageToSend) {
+            console.log(imageToSend);
+            var dataImg = {img: null,titre:imageToSend.name.substr(0,imageToSend.name.length-4),datePublication: new Date(), idUser:1, taille: imageToSend.size };
+            reader.readAsDataURL(imageToSend);
+        }else{
+            toastr.info('Aucun element n\'a été rajouté','',{displayDuration:200})
+        }
+       
+      }
+
     savePhoto = (photo) => {
         const requestOptions = {
           method: 'POST',
