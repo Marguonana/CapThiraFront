@@ -19,7 +19,7 @@ module.exports = {
           use: ['babel-loader']
         },
         {     
-          test: /\.sc|ass$/,
+          test: /\.css$/,
           use: [
           // { loader: MiniCssExtractPlugin.loader,
           // options: { publicPath: '../'} },
