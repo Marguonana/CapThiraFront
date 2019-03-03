@@ -2,7 +2,6 @@ import React from 'react';
 import toastr from 'reactjs-toastr';
 import 'reactjs-toastr/lib/toast.css';
 import Radium from 'radium';
-require('underscore');
 
 import { Container, Row, Col } from 'reactstrap';
 
@@ -117,10 +116,8 @@ class DisplayPhotoComp extends React.Component{
         // console.log(res)
         for(var i = 0; i < res.length; i++){
             if (res[i].img.data){
-                var prefix = "data:image/jpeg;base64,"; // Prefix par default
-                /**
-                 * Gestion du prefix. 
-                 */
+                var prefix = "data:image/jpeg;base64,"; // Prefix par defaut
+                // Gestion du prefix. 
                 var img = new Buffer(res[i].img.data, "binary").toString("base64");
                 if (img.substr(0, "dataimage/jpegbase64".length).includes("jpeg")){
                     prefix = "data:image/jpeg;base64,";
@@ -248,10 +245,8 @@ class DisplayPhotoComp extends React.Component{
                     </Container>
                 </div>
             )
-        
-
         }
-    
+
 }
 {/* <i className="fa fa-plus"></i> */}
 
