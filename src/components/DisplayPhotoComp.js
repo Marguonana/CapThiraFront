@@ -56,7 +56,8 @@ class DisplayPhotoComp extends React.Component{
             color: "rgb(204, 86, 86)",
             ":hover": {
               color: 'red',
-              cursor: "pointer"
+              cursor: "pointer",
+              transform: 'scale(2)'
             }
           },
           colStyle: {
