@@ -1,5 +1,6 @@
 import React from 'react';
 import Radium from 'radium';
+import { Container, Row, Col } from 'reactstrap';
 
 
 // var imgParDefault = require('./images/couverture.png')
@@ -19,9 +20,8 @@ class CouvertureComp extends React.Component{
         return {
             bannerStyle : {
                 height: '200px',
-                width: '95%',
-                boxShadow: '10px 5px 5px #eee',
-                backgroundColor: '#F2F2F1',
+                width: '100%',
+                boxShadow: '0px 5px 0px #eee',
                 marginLeft:'auto',
                 marginRight:'auto'
             },
@@ -29,6 +29,17 @@ class CouvertureComp extends React.Component{
                 marginRight: 'auto',
                 marginLeft: 'auto',
                 marginTop:'20px'
+            },
+            menu : {
+                backgroundColor: '#332a2a'
+            },
+            item : {
+                marginLeft : '1%',
+                ':hover' : {
+                    color : "#eee",
+                    cursor: 'pointer',
+                    
+                } 
             }
         };
     }
@@ -39,18 +50,16 @@ class CouvertureComp extends React.Component{
 	render(){
         const styles = this.getStyles();
 		return(
-            <div className="site-top content">
-                <div className="site-banner" style={styles.bannerStyle}>
-                <div className="container">
-                        <div className="row">
-                            <div className="col-md-offset-2 col-md-8 text-center" style={styles.textStyle}>
-                                <h2>Ajouter une <span className="blue">photo</span><span className="green"> de couverture</span></h2>
+
+                    <Container style={styles.bannerStyle}>
+                        <Row>
+                            <div  style={styles.textStyle}>
+                                <h2>Ajouter une photo de couverture</h2>
                                 <p> Mettre une description.</p>
                             </div>
-                        </div>
-                    </div>  
-                </div>
-            </div>
+                        </Row>
+                    </Container>  
+
 		)
 	}
 }

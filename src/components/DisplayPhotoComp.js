@@ -47,14 +47,13 @@ class DisplayPhotoComp extends React.Component{
         
     }
 
-    
+    /** ---------------------- STYLE */
 
     getStyles() {
         return {
           deleteButton: {
             position: "absolute",
-            right: "10px",
-            color: 'black',
+            color: "rgb(204, 86, 86)",
             ":hover": {
               color: 'red',
               cursor: "pointer"
@@ -64,12 +63,17 @@ class DisplayPhotoComp extends React.Component{
             height: 'auto',
             width: '20%',
             maxWidth: '20%',
-            marginRight: '5%'
+            minWidth: "150px",
+            minHeight:"150px",
+            marginRight: '5%',
+            marginBottom: '3%'
 
             },
             imageStyle : {
-                height: '150px',
-                width: '150px'
+                // height: '150px',
+                // width: '150px',
+                border: '10px solid white',
+                marginBottom: '4%'
             },
             mainPost : {
                 marginTop: '2%',
@@ -77,9 +81,7 @@ class DisplayPhotoComp extends React.Component{
                 marginLeft:'auto',
                 marginRight: 'auto',
                 width: '95%',
-                backgroundColor: '#F2F2F1',
                 // boxShadow: '5px -2px 5px 5px #eee'
-                border: '1px solid grey'
 
 
             },
@@ -88,10 +90,28 @@ class DisplayPhotoComp extends React.Component{
                 marginRight: 'auto',
                 marginTop: '3%'
             },
+            button : {
+                display: 'none'
+            },
+            labelButton : {
+                cursor: 'pointer',
+                color: '#00b1ca',
+                fontWeight: 'bold',
+                ':hover' : {
+                    color: '#25a5c4'
+                }
+            },
+            date : {
+                fontSize: '8px',
+                marginBottom: '3%',
+                textAlign: 'right'
+            }
+            
 
            };
       }
 
+    /** -------------------- GET */
     encodeImg(res){
         // console.log(res)
         for(var i = 0; i < res.length; i++){
@@ -130,6 +150,8 @@ class DisplayPhotoComp extends React.Component{
             this.setState.hasImg = true;
     }
 
+    /** -------------- POST */
+
     savePhoto = (photo) => {
         const requestOptions = {
           method: 'POST',
@@ -148,9 +170,25 @@ class DisplayPhotoComp extends React.Component{
         });
     }
 
-    componentDidMount(){
-        this.getPhoto();        
-    }
+    handleSelectedFile = event => {
+        var imageToSend = event.target.files[0]; 
+        var reader = new FileReader();
+        reader.onload = () => {
+            dataImg.img = reader.result;
+            console.log(dataImg)
+            this.savePhoto(dataImg)
+        }
+        if (imageToSend) {
+            console.log(imageToSend);
+            var dataImg = {img: null,titre:imageToSend.name.substr(0,imageToSend.name.length-4),datePublication: new Date(), idUser:1, taille: imageToSend.size };
+            reader.readAsDataURL(imageToSend);
+        }else{
+            toastr.info('Aucun element n\'a été rajouté','',{displayDuration:200})
+        }
+       
+      }
+      
+   /** ---------------- DELETE */
 
     handleClick = (e, el) => {
           const requestOptions = {
@@ -168,23 +206,9 @@ class DisplayPhotoComp extends React.Component{
           });
       }
 
-      handleSelectedFile = event => {
-        var imageToSend = event.target.files[0]; 
-        var reader = new FileReader();
-        reader.onload = () => {
-            dataImg.img = reader.result;
-            console.log(dataImg)
-            this.savePhoto(dataImg)
-        }
-        if (imageToSend) {
-            console.log(imageToSend);
-            var dataImg = {img: null,titre:imageToSend.name.substr(0,imageToSend.name.length-4),datePublication: new Date(), idUser:1, taille: imageToSend.size };
-            reader.readAsDataURL(imageToSend);
-        }else{
-            toastr.info('Aucun element n\'a été rajouté','',{displayDuration:200})
-        }
-       
-      }
+      componentDidMount(){
+        this.getPhoto();        
+    }
 
     
     
@@ -194,26 +218,28 @@ class DisplayPhotoComp extends React.Component{
             var colImage = this.state.album.map( (el,index) => {
                 return ( 
                     <Col key={index} style={styles.colStyle} >
-                    <img key={index + '_img'} src={el.img.data} alt="" style={styles.imageStyle}/>
-                    <div className="titre-image">
-                        <h4>{el.titre}<i key={'delete_' + index} onClick={(e) => this.handleClick(e, el)} className="fa fa-times" style={styles.deleteButton}></i></h4>
-                    </div>
-                    <div className="post-hover text-center">
-                        <div className="inside">
-                            <span className="date">{el.datePublication}</span>
+                        <i key={'delete_' + index} onClick={(e) => this.handleClick(e, el)} className="fa fa-times" style={styles.deleteButton}></i>
+                        <img key={index + '_img'} src={el.img.data} alt="" style={styles.imageStyle} width="150px" height="150px"/>
+                        <div className="titre-image">
+                            <h4>{el.titre}</h4>
                         </div>
-                    </div>
-                </Col>
+                        <div className="post-hover text-center">
+                            <div className="inside">
+                                <i style={styles.date}>{el.datePublication}</i>
+                            </div>
+                        </div>
+                    </Col>
                 )
             });
     
             return(
-                <div className="main-posts" style={styles.mainPost}>
+                <div style={styles.mainPost}>
                     <Container>
                         <Row>
                             <Row>{colImage}</Row>
-                            <Row><form method="post" encType="multipart/form-data" action="" style={styles.ajouterPhoto}>
-                                    <input style={styles.button} type='file' accept='image/png,image/jpeg' name='ajouter' onChange={this.handleSelectedFile}></input>
+                            <Row style={styles.ajouterPhoto}><form method="post" encType="multipart/form-data" action="">
+                                    <label htmlFor="file" style={styles.labelButton}>Ajouter une image</label>
+                                    <input id="file" style={styles.button} type='file' accept='image/png,image/jpeg' name='ajouter' onChange={this.handleSelectedFile}></input>
                                 </form>
                             </Row>
                         </Row>

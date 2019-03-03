@@ -1,6 +1,7 @@
 import React from 'react';
 import CouvertureComp from './CouvertureComp';
 import DisplayPhotoComp from './DisplayPhotoComp';
+import MenuComponent from './menu/MenuComponent';
 
 class View extends React.Component{
 
@@ -12,6 +13,7 @@ class View extends React.Component{
     render(){
         return(
             <div>
+                <MenuComponent />
                 <CouvertureComp />
                 <DisplayPhotoComp />
             </div>
