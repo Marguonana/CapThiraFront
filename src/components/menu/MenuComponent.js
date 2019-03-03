@@ -1,6 +1,7 @@
 import React from 'react';
 import Radium from 'radium';
 import { Container, Row, Col } from 'reactstrap';
+import { getStyles } from './menuStyle'
 
 
 class MenuComponent extends React.Component{
@@ -8,28 +9,9 @@ class MenuComponent extends React.Component{
         super(props);
     }
 
-    getStyles() {
-        return {
-            item : {
-                marginLeft : '2%',
-                ':hover' : {
-                    color : "#eee",
-                    cursor: 'pointer',
-                    
-                } 
-            },
-            menu : {
-                width: '100%',
-                backgroundColor: '#332a2a'
-            }
-        };
-    }
-    
-    
-   
-    
+       
 	render(){
-        const styles = this.getStyles();
+        const styles = getStyles();
 		return(
                 <Row style={styles.menu}>
                     <span style={styles.item}>Deconnexion</span>

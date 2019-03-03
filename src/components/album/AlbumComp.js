@@ -2,12 +2,13 @@ import React from 'react';
 import toastr from 'reactjs-toastr';
 import 'reactjs-toastr/lib/toast.css';
 import Radium from 'radium';
+import { getStyles } from './albumStyle'
 
 import { Container, Row, Col } from 'reactstrap';
 
 
 
-class DisplayPhotoComp extends React.Component{
+class AlbumComp extends React.Component{
     constructor(props){
         super(props)
         this.state = {
@@ -46,71 +47,7 @@ class DisplayPhotoComp extends React.Component{
         
     }
 
-    /** ---------------------- STYLE */
-
-    getStyles() {
-        return {
-          deleteButton: {
-            position: "absolute",
-            color: "rgb(204, 86, 86)",
-            ":hover": {
-              color: 'red',
-              cursor: "pointer",
-              transform: 'scale(2)'
-            }
-          },
-          colStyle: {
-            height: 'auto',
-            width: '20%',
-            maxWidth: '20%',
-            minWidth: "150px",
-            minHeight:"150px",
-            marginRight: '5%',
-            marginBottom: '3%'
-
-            },
-            imageStyle : {
-                // height: '150px',
-                // width: '150px',
-                border: '10px solid white',
-                marginBottom: '4%'
-            },
-            mainPost : {
-                marginTop: '2%',
-                paddingTop: '10px',
-                marginLeft:'auto',
-                marginRight: 'auto',
-                width: '95%',
-                // boxShadow: '5px -2px 5px 5px #eee'
-
-
-            },
-            ajouterPhoto : {
-                marginLeft: 'auto',
-                marginRight: 'auto',
-                marginTop: '3%'
-            },
-            button : {
-                display: 'none'
-            },
-            labelButton : {
-                cursor: 'pointer',
-                color: '#00b1ca',
-                fontWeight: 'bold',
-                ':hover' : {
-                    color: '#25a5c4'
-                }
-            },
-            date : {
-                fontSize: '8px',
-                marginBottom: '3%',
-                textAlign: 'right'
-            }
-            
-
-           };
-      }
-
+   
     /** -------------------- GET */
     encodeImg(res){
         // console.log(res)
@@ -144,8 +81,6 @@ class DisplayPhotoComp extends React.Component{
           }),myHeaders)
         .then((resultat) =>  resultat.json())
         .then(resultat => this.encodeImg(resultat))
-        if (this.state.data)
-            this.setState.hasImg = true;
     }
 
     /** -------------- POST */
@@ -212,7 +147,7 @@ class DisplayPhotoComp extends React.Component{
     
     render = function(){
        
-            const styles = this.getStyles();
+            const styles = getStyles();
             var colImage = this.state.album.map( (el,index) => {
                 return ( 
                     <Col key={index} style={styles.colStyle} >
@@ -248,6 +183,6 @@ class DisplayPhotoComp extends React.Component{
         }
 
 }
-{/* <i className="fa fa-plus"></i> */}
 
-export default Radium(DisplayPhotoComp);
+
+export default Radium(AlbumComp);
