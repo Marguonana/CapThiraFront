@@ -4,3 +4,5 @@ node_modules
 dist
 .publish
 .editorconfig
+package-json
+package-lock.json
