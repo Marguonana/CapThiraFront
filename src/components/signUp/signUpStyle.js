@@ -40,7 +40,7 @@ export function getStyles(){
             backgroundImage: "url("+imagePerson+")",
             backgroundRepeat: "no-repeat",
             backgroundAttachment: "scroll",
-            backgroundSize: '20px 20px',
+            backgroundSize: "20px 20px",
             paddingLeft:'30px',
             border: "0px",
             color: 'white',
@@ -51,7 +51,7 @@ export function getStyles(){
         },
         email : {
             background: "url("+imageEmail+") no-repeat scroll",
-            backgroundSize: '20px 20px',
+            backgroundSize: "20px 20px",
             paddingLeft:'30px',
             border: "0px",
             color: 'white',
@@ -62,7 +62,7 @@ export function getStyles(){
         },
         password : {
             background: "url("+imagePassword+") no-repeat scroll",
-            backgroundSize: '20px 20px',
+            backgroundSize: "20px 20px",
             paddingLeft:'30px',
             border: "0px",
             color: 'white',
@@ -73,7 +73,7 @@ export function getStyles(){
         },
         birthday : {
             background: "url("+imageBirthday+") no-repeat scroll",
-            backgroundSize: '20px 20px',
+            backgroundSize: "20px 20px",
             paddingLeft:'30px',
             border: "0px",
             color:'white',
