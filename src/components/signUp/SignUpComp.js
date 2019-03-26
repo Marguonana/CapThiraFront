@@ -78,23 +78,15 @@ class SignUp extends React.Component{
 
     /****************************** TOKEN */
     setToken(idToken) {
-        // Saves user token to localStorage
         localStorage.setItem('id_token', idToken)
     }
 
     getToken() {
-        // Retrieves the user token from localStorage
         return localStorage.getItem('id_token')
     }
 
     logout() {
-        // Clear user token and profile data from localStorage
         localStorage.removeItem('id_token');
-    }
-
-    getProfile() {
-        // Using jwt-decode npm package to decode the token
-        return decode(this.getToken());
     }
 
     validate =(e) => {
@@ -136,20 +128,19 @@ class SignUp extends React.Component{
 
             var requestOptions = {
                 method: 'GET',
-                // body: JSON.stringify(dataToSend),
                 headers: {'Accept': 'application/json',"Content-Type": "application/json"}
             };
 
             console.log("Données : " + JSON.stringify(dataToSend));
-            fetch("http://localhost:3000/users/login/" + this.state.email + "/" + this.state.password).then((response) => {
-                console.log("statut " + response.status)
-                response.json();
-            }).then((result) => {
-                console.log(result);
-                toastr.info("Connexion réussi "+ result.token);
-                localStorage.setItem('token', result.token);
+            fetch("http://localhost:3000/users/login/" + this.state.email + "/" + this.state.password, requestOptions)
+            .then(response => 
+                response.json())
+            .then(response => {
+                console.log( 'resultat --- ' + JSON.stringify(response));
+                toastr.info("Connexion réussi "+ response);
+                this.setToken(response.token);
             }).catch((error) => {
-                toastr.error('Echec de la connexion');
+                toastr.error('Echec de la connexion '+ error);
             });
             
         }
