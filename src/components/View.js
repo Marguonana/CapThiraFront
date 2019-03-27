@@ -1,14 +1,8 @@
 import React from 'react';
-import {Browser, Match, Miss } from 'react-router';
 import CoverComp from './cover/CoverComp';
 import AlbumComp from './album/AlbumComp';
 import MenuComponent from './menu/MenuComponent';
  import SignUp from './signUp/SignUpComp';
-
-
- const Root = () => {
-
- }
 
 
 class View extends React.Component{
