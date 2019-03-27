@@ -110,10 +110,10 @@ class AlbumComp extends React.Component{
           response.json();
         }).then((result) => {
           console.log(result);
-          toastr.info('Photo ajouté avec succès');
+          toastr.info("Adding with success !");
           window.location.reload();
         }).catch((error) => {
-          toastr.error('Erreur d\'envoie des params');
+          toastr.error("Post status : Failed !");
         });
     }
 
@@ -129,7 +129,7 @@ class AlbumComp extends React.Component{
             var dataImg = {img: null,titre:imageToSend.name.substr(0,imageToSend.name.length-4),datePublication: new Date(), idUser:localStorage.getItem('id_user'), taille: imageToSend.size };
             reader.readAsDataURL(imageToSend);
         }else{
-            toastr.info('Aucun element n\'a été rajouté','',{displayDuration:200})
+            toastr.info("Add process status : Failed !",'',{displayDuration:200})
         }
        
       }
@@ -147,7 +147,7 @@ class AlbumComp extends React.Component{
             console.log(result);
             window.location.reload();
           }).catch((error) => {
-            console.error('Erreur d\'envoie des params','',{displayDuration:200});
+            console.error("Error with request params while delete",'',{displayDuration:200});
           
           });
       }
