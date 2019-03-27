@@ -46,7 +46,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack-dev-server --watch --config ./webpack.config.js --mode development ",
+    "start": "webpack-dev-server --watch --config ./webpack.config.js --mode development --history-api-fallback",
     "build": "webpack"
   },
   "repository": {
