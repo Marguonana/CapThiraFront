@@ -5,6 +5,7 @@ import Radium from 'radium';
 import { getStyles } from './albumStyle'
 
 import { Container, Row, Col } from 'reactstrap';
+require('moment');
 
 
 
@@ -41,7 +42,8 @@ class AlbumComp extends React.Component{
                     data: "http://www.rangerwoodperiyar.com/images/joomlart/demo/default.jpg"
                 }}
             ],
-            selectedFile: null
+            selectedFile: null,
+            idUser : localStorage.getItem("id_user")
         };
         
         console.log("album")
@@ -50,32 +52,43 @@ class AlbumComp extends React.Component{
    
     /** -------------------- GET */
     encodeImg(res){
-        // console.log(res)
-        for(var i = 0; i < res.length; i++){
-            if (res[i].img.data){
+        var listeImages = JSON.parse(res.imgs);
+        
+        for(var i = 0; i < listeImages.length; i++){
+            var img = this._arrayBufferToBase64(listeImages[i].img.data);
                 var prefix = "data:image/jpeg;base64,"; // Prefix par defaut
                 // Gestion du prefix. 
-                var img = new Buffer(res[i].img.data, "binary").toString("base64");
+               // var img = new Buffer(listeImages[i].img.data, "binary").toString("base64");
                 if (img.substr(0, "dataimage/jpegbase64".length).includes("jpeg")){
                     prefix = "data:image/jpeg;base64,";
                     img = img.substr("dataimage/jpegbase64".length, img.length);
                 }else{
                     prefix = "data:image/png;base64,";
-                    console.log(img)
-                    img = img.substr("dataimage/pngbase64".length, img.length+2);
+                    img = img.substr("dataimage/pngbase64".length, img.length);
                 }
                 var dataUri = prefix + img;
-                res[i].img.data = dataUri;
-            }
+                console.log(dataUri)
+                listeImages[i].img.data = dataUri;
+                
         } 
-        this.setState({album: res});
-        // console.log(this.state);
+        this.setState({album: listeImages});
+         console.log(this.state);
         
+    }
+
+     _arrayBufferToBase64( buffer ) {
+        var binary = '';
+        var bytes = new Uint8Array( buffer );
+        var len = bytes.byteLength;
+        for (var i = 0; i < len; i++) {
+            binary += String.fromCharCode( bytes[ i ] );
+        }
+        return btoa( binary );
     }
 
     getPhoto(){
         var myHeaders = new Headers();
-        fetch(new Request('http://localhost:3000/images/', {
+        fetch(new Request('http://localhost:3000/images/showallimages/' + this.state.idUser, {
             method: 'GET',
             cache: 'default'
           }),myHeaders)
@@ -86,6 +99,7 @@ class AlbumComp extends React.Component{
     /** -------------- POST */
 
     savePhoto = (photo) => {
+        console.log(photo)
         const requestOptions = {
           method: 'POST',
           body: JSON.stringify(photo),
@@ -112,8 +126,7 @@ class AlbumComp extends React.Component{
             this.savePhoto(dataImg)
         }
         if (imageToSend) {
-            console.log(imageToSend);
-            var dataImg = {img: null,titre:imageToSend.name.substr(0,imageToSend.name.length-4),datePublication: new Date(), idUser:1, taille: imageToSend.size };
+            var dataImg = {img: null,titre:imageToSend.name.substr(0,imageToSend.name.length-4),datePublication: new Date(), idUser:localStorage.getItem('id_user'), taille: imageToSend.size };
             reader.readAsDataURL(imageToSend);
         }else{
             toastr.info('Aucun element n\'a été rajouté','',{displayDuration:200})
@@ -128,7 +141,7 @@ class AlbumComp extends React.Component{
             method: 'DELETE'
           };
         
-          fetch("http://localhost:3000/images/supprimer/" + el._id, requestOptions).then((response) => {
+          fetch("http://localhost:3000/images/delete/" + el._id, requestOptions).then((response) => {
             response.json();
           }).then((result) => {
             console.log(result);
@@ -148,7 +161,8 @@ class AlbumComp extends React.Component{
     render = function(){
        
             const styles = getStyles();
-            var colImage = this.state.album.map( (el,index) => {
+            var album = Array.from(this.state.album);
+            var colImage = album.map( (el,index) => {
                 return ( 
                     <Col key={index} style={styles.colStyle} >
                         <i key={'delete_' + index} onClick={(e) => this.handleClick(e, el)} className="fa fa-times" style={styles.deleteButton}></i>

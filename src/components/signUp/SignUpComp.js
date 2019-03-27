@@ -74,6 +74,14 @@ class SignUp extends React.Component{
         return parseInt(moment(this.state.birthday).fromNow());
     }
 
+    /****************************** TOKEN */
+    setIdUser(idUser) {
+        localStorage.setItem('id_user', idUser);
+    }
+
+    getIdUser() {
+        return localStorage.getItem('id_user');
+    }
 
 
     /****************************** TOKEN */
@@ -139,6 +147,7 @@ class SignUp extends React.Component{
                 console.log( 'resultat --- ' + JSON.stringify(response));
                 toastr.info("Connexion réussi "+ response);
                 this.setToken(response.token);
+                this.setIdUser(response.idMongo);
                 this.props.history.push("./profil");
             }).catch((error) => {
                 toastr.error('Echec de la connexion '+ error);
