@@ -139,6 +139,7 @@ class SignUp extends React.Component{
                 console.log( 'resultat --- ' + JSON.stringify(response));
                 toastr.info("Connexion réussi "+ response);
                 this.setToken(response.token);
+                this.props.history.push("./profil");
             }).catch((error) => {
                 toastr.error('Echec de la connexion '+ error);
             });

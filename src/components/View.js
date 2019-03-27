@@ -1,13 +1,13 @@
 import React from 'react';
-import {Router, Route } from 'react-router-dom';
+import {Browser, Match, Miss } from 'react-router';
 import CoverComp from './cover/CoverComp';
 import AlbumComp from './album/AlbumComp';
 import MenuComponent from './menu/MenuComponent';
  import SignUp from './signUp/SignUpComp';
 
 
- const Path = () => {
-     
+ const Root = () => {
+
  }
 
 

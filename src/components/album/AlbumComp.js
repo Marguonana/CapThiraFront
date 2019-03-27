@@ -44,7 +44,7 @@ class AlbumComp extends React.Component{
             selectedFile: null
         };
         
-        
+        console.log("album")
     }
 
    
