@@ -144,7 +144,7 @@ class SignUp extends React.Component{
             .then(response => 
                 response.json())
             .then(response => {
-                console.log( 'resultat --- ' + JSON.stringify(response));
+                // console.log( 'resultat --- ' + JSON.stringify(response));
                 toastr.info("Welcome back !");
                 this.setToken(response.token);
                 this.setIdUser(response.idMongo);
