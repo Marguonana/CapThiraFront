@@ -74,6 +74,14 @@ class SignUp extends React.Component{
         return parseInt(moment(this.state.birthday).fromNow());
     }
 
+    /****************************** TOKEN */
+    setIdUser(idUser) {
+        localStorage.setItem('id_user', idUser);
+    }
+
+    getIdUser() {
+        return localStorage.getItem('id_user');
+    }
 
 
     /****************************** TOKEN */
@@ -107,15 +115,15 @@ class SignUp extends React.Component{
                 body: JSON.stringify(dataToSend),
                 headers: {"Content-Type": "application/json"}
               };
-              console.log("Données : " + dataToSend)
+            //   console.log("Données : " + dataToSend)
               fetch("http://localhost:3000/users/post/", requestOptions).then((response) => {
                 response.json();
               }).then((result) => {
                 console.log(result);
-                toastr.info("L'utilisateur a été ajouté avec succès");
+                toastr.info("New user added !");
                 window.location.reload();
               }).catch((error) => {
-                toastr.error('Erreur d\'envoie des params. L\'utilisateur n\'a pas été ajouté ');
+                toastr.error('Request status : Failed ! Have you missed something?');
               });
 
         }else{
@@ -137,10 +145,12 @@ class SignUp extends React.Component{
                 response.json())
             .then(response => {
                 console.log( 'resultat --- ' + JSON.stringify(response));
-                toastr.info("Connexion réussi "+ response);
+                toastr.info("Welcome back !");
                 this.setToken(response.token);
+                this.setIdUser(response.idMongo);
+                this.props.history.push("./profil");
             }).catch((error) => {
-                toastr.error('Echec de la connexion '+ error);
+                toastr.error('Echec : Wrong login/password '+ error);
             });
             
         }
