@@ -1,99 +1,46 @@
-const imageEmail = require('../../images/icon-email-white.png');
-const imagePassword = require('../../images/icon-password-white.png');
-const imagePerson = require('../../images/icon-person-white.png');
-const imageBirthday = require("../../images/birthday-icon-white.png");
-const imageHeader = require("../../images/alps-background.jpg");
-
 export function getStyles(){
     return {
-
-        form : {
-            color: "white",
-            marginLeft: "auto",
-            marginRight: "auto",
-            width: "35%",
-            height: "70%",
-            padding : '0px',
-            marginTop: "10%",
-            borderRadius: "50px 20px"
+        root: {
+            backgoundColor : "rgb(33,37,41)",
+	        fontSize: "16px"
         },
-        header : {
-            marginBottom: '10%'
-        },
-        textConnexion : {
-            whiteSpace: "nowrap",
-            color: '#00b1ca',
-            fontWeight: 'bold',
-        },
-        bottom : {
-            background: "url("+imageHeader+") no-repeat",
-            opacity: "0.5",
-            height: "30%",
-            backgroundSize : "100% 100%",
-            marginTop: '5%',
-            // borderRadius: "50px 20px 0px 0px",
-            paddingRight : "0px",
-            paddingLeft: "0px !important"
-        },
-        pseudo : {
-            backgroundColor: "#000",
-            backgroundImage: "url("+imagePerson+")",
-            backgroundRepeat: "no-repeat",
-            backgroundAttachment: "scroll",
-            backgroundSize: "20px 20px",
-            paddingLeft:'30px',
-            border: "0px",
-            color: 'white',
-            borderBottom: "1px solid white",
-            marginBottom: "5%",
-            marginLeft: "auto",
-            marginRight: "auto",
-        },
-        email : {
-            background: "url("+imageEmail+") no-repeat scroll",
-            backgroundSize: "20px 20px",
-            paddingLeft:'30px',
-            border: "0px",
-            color: 'white',
-            borderBottom: "1px solid white",
-            marginBottom: "5%",
-            marginLeft: "auto",
-            marginRight: "auto",
-        },
-        password : {
-            background: "url("+imagePassword+") no-repeat scroll",
-            backgroundSize: "20px 20px",
-            paddingLeft:'30px',
-            border: "0px",
-            color: 'white',
-            borderBottom: "1px solid white",
-            marginBottom: "5%",
-            marginLeft: "auto",
-            marginRight: "auto",
-        },
-        birthday : {
-            background: "url("+imageBirthday+") no-repeat scroll",
-            backgroundSize: "20px 20px",
-            paddingLeft:'30px',
-            border: "0px",
-            color:'white',
-            borderBottom: "1px solid white",
-            marginBottom: "5%",
-            marginLeft: "auto",
-            marginRight: "auto",
+        form: {
+            backgroundColor: "#fff",
+            width: "320px",
+            marginTop: "200px",
+            textAlign: "center",
+            padding: "40px 0 40px 0",
+            borderRadius: "6px",
+            boxShadow: "1px 1px #d7dfea"
 
         },
-        button : {
-            cursor: 'pointer',
-            backgroundColor: "#191818",
-            borderColor: '#212627',
-            color: '#00b1ca',
-            fontWeight: 'bold',
-            ':hover' : {
-                color: '#25a5c4',
-                backgroundColor: 'black',
-               
+        bouton: {
+            width: "260px",
+            height: "42px",
+            margin: "26px 0px 0px",
+            border : "none",
+            borderRadius : "25px",
+            color : "#fff",
+            backgroundColor :"#007bff",
+            ":hover" : {
+                backgroundColor: "#0062cc"
+
             }
+        },
+        input: {
+            width: "260px",
+            height: "42px",
+            marginBottom: "16px",
+            padding: "12px",
+            backgroundColor: "#f0f2f5",
+            border: "none",
+            borderBottom: "1px solid #d7dfea"
+        },
+        link: {
+            marginTop: "12px",
+            fontSize: "12px",
+            height: "18px",
+            color: "#17a2b8"
         }
     }
 }
