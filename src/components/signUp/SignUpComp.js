@@ -1,7 +1,7 @@
 import React from 'react';
 import Radium from 'radium';
 import { Container, Row, Col } from 'reactstrap';
-import { getStyles } from './signUpStyle';
+import { getStyles } from './signupStyle';
 import toastr from 'reactjs-toastr';
 import 'reactjs-toastr/lib/toast.css';
 const styles = getStyles();

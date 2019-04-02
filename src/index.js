@@ -7,7 +7,7 @@ import {browserHistory } from 'react-router';
 import CoverComp from './components/cover/CoverComp';
 import AlbumComp from './components/album/AlbumComp';
 import MenuComponent from './components/menu/MenuComponent';
- import SignUp from './components/signUp/SignUpComp';
+ import SignUp from './components/signUp/SignupComp';
 
 
 import View from './components/View';
