@@ -1,7 +1,7 @@
 import React from 'react';
 import Radium from 'radium';
 import { Container, Row, Col } from 'reactstrap';
-import { getStyles } from './signUpStyle';
+import { getStyles } from './signupStyle';
 import toastr from 'reactjs-toastr';
 import 'reactjs-toastr/lib/toast.css';
 const styles = getStyles();
@@ -144,7 +144,7 @@ class SignUp extends React.Component{
             .then(response => 
                 response.json())
             .then(response => {
-                console.log( 'resultat --- ' + JSON.stringify(response));
+                // console.log( 'resultat --- ' + JSON.stringify(response));
                 toastr.info("Welcome back !");
                 this.setToken(response.token);
                 this.setIdUser(response.idMongo);
@@ -160,56 +160,47 @@ class SignUp extends React.Component{
 	render(){
    
         console.log("value of createAccount "  + this.state.createAccount);
-        let pseudo = (<Row><input style={styles.pseudo} type="text" placeholder="Mon pseudo" onBlur={event => this.setPseudo(event)} onChange={event => this.setPseudo(event)} value={this.state.pseudo} ></input></Row>);
-        let space = (<Row></Row>);
-        let firstname = (<Row><input style={styles.pseudo} type="text" placeholder="Prénom" onBlur={event => this.setFirstname(event)} onChange={event => this.setFirstname(event)} value={this.state.firstname} ></input></Row>);
-        let lastname = (<Row><input style={styles.pseudo} type="text" placeholder="Nom" onBlur={event => this.setLastname(event)} onChange={event => this.setLastname(event)} value={this.state.lastname} ></input></Row>);
-        let email = (<Row><input style={styles.email} type="email" placeholder="user1@wanadoo.fr" onBlur={event => this.setEmail(event)} onChange={event => this.setEmail(event)} value={this.state.email}></input></Row>);
-        let password = (<Row><input style={styles.password} type="password" placeholder="********" onChange={event => this.setPassword(event)} value={this.state.password}></input></Row>);
-        let birthday = (<Row><input style={styles.birthday} type="date" placeholder="01/01/1995" onChange={event => this.setBirthday(event)} value={this.state.birthday}></input></Row>);
-        
+        let firstname = (<input style={styles.input} type="text" placeholder="Prénom" pattern="[A-Za-z]+" title="Uniquement des lettres" onBlur={event => this.setFirstname(event)} onChange={event => this.setFirstname(event)} value={this.state.firstname} required></input>);
+        let lastname = (<input style={styles.input} type="text" placeholder="Nom"  pattern="[A-Za-z]+" title="Uniquement des lettres" onBlur={event => this.setLastname(event)} onChange={event => this.setLastname(event)} value={this.state.lastname} required></input>);
+        let pseudo = (<input style={styles.input} type="text" placeholder="Pseudo" pattern="[A-Za-z0-9]+" title="Pas de chiffre ou caractères spéciaux" onBlur={event => this.setPseudo(event)} onChange={event => this.setPseudo(event)} value={this.state.pseudo} required></input>);
+        let email = (<input style={styles.input} type="email" placeholder="Email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" onBlur={event => this.setEmail(event)} onChange={event => this.setEmail(event)} value={this.state.email} required></input>);
+        let password = (<input style={styles.input} type="password" placeholder="Mot de passe" pattern="([a-zA-Z0-9!+.&%#é@]+)" onChange={event => this.setPassword(event)} value={this.state.password} required></input>);
+        let birthday = (<input style={styles.input} type="date" placeholder="01/01/1995" onChange={event => this.setBirthday(event)} value={this.state.birthday} required></input>);
+
         let createAccount =  (
             <Container>
                 {firstname}
-                {space}
                 {lastname}
-                {space}
                 {pseudo}
-                {space}
                 {email}
-                {space}
                 {password}
-                {space}
                 {birthday}
             </Container>
         );
 
         let validator = (
             <Container>
-                <button style={styles.button} onClick={(e) => this.validate(e)}>Confirmer</button>
+                <button style={styles.bouton} onClick={(e) => this.validate(e)}>Suivant</button>
             </Container>
         );
 
         let signIn = (
             <Container>
-                {space}
                 {email}
-                {space}
                 {password}
             </Container>
         ) ;
 
-        let signTitle =  this.state.createAccount ? (<Col style={styles.textConnexion} onClick={(e) => this.setSignTitle()}>Se connecter <i className="fa fa-chevron-right" aria-hidden="true"></i></Col>) : (<Col style={styles.textConnexion} onClick={()=>this.setSignTitle()}><i className="fa fa-chevron-left" aria-hidden="true"></i> Créer un compte</Col>) ;
+        let signTitle =  this.state.createAccount ? (<Col style={styles.link} onClick={(e) => this.setSignTitle()}>Vous avez déjà un compte ? Se connecter</Col>) : (<Col style={styles.link} onClick={()=>this.setSignTitle()}>Vous n'avez pas de compte ? Creer un compte</Col>) ;
         let groupView = this.state.createAccount ? createAccount : signIn;
-		return(
 
+		return(
             <Container style={styles.form}>
-                <Row style={styles.header}>
-                    {signTitle}
-                </Row>
-                {groupView}
-                {validator}
-                <Container style={styles.bottom}></Container>
+                <form action="/profil">
+                    <Row>{groupView}</Row>
+                    <Row>{validator}</Row>
+                    <Row>{signTitle}</Row>
+                </form>
             </Container>  
 		)
 	}

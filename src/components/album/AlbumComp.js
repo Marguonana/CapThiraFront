@@ -2,11 +2,12 @@ import React from 'react';
 import toastr from 'reactjs-toastr';
 import 'reactjs-toastr/lib/toast.css';
 import Radium from 'radium';
-import { getStyles } from './albumStyle'
-
+import { getStyles } from './albumStyle';
 import { Container, Row, Col } from 'reactstrap';
 require('moment');
 
+const albumService = require('./albumService');
+const albumProcess = require('./albumProcess');
 
 
 class AlbumComp extends React.Component{
@@ -46,55 +47,9 @@ class AlbumComp extends React.Component{
             idUser : localStorage.getItem("id_user")
         };
         
-        console.log("album")
+        console.log("inside album comp")
     }
 
-   
-    /** -------------------- GET */
-    encodeImg(res){
-        var listeImages = JSON.parse(res.imgs);
-        
-        for(var i = 0; i < listeImages.length; i++){
-            var img = this._arrayBufferToBase64(listeImages[i].img.data);
-                var prefix = "data:image/jpeg;base64,"; // Prefix par defaut
-                // Gestion du prefix. 
-               // var img = new Buffer(listeImages[i].img.data, "binary").toString("base64");
-                if (img.substr(0, "dataimage/jpegbase64".length).includes("jpeg")){
-                    prefix = "data:image/jpeg;base64,";
-                    img = img.substr("dataimage/jpegbase64".length, img.length);
-                }else{
-                    prefix = "data:image/png;base64,";
-                    img = img.substr("dataimage/pngbase64".length, img.length);
-                }
-                var dataUri = prefix + img;
-                console.log(dataUri)
-                listeImages[i].img.data = dataUri;
-                
-        } 
-        this.setState({album: listeImages});
-         console.log(this.state);
-        
-    }
-
-     _arrayBufferToBase64( buffer ) {
-        var binary = '';
-        var bytes = new Uint8Array( buffer );
-        var len = bytes.byteLength;
-        for (var i = 0; i < len; i++) {
-            binary += String.fromCharCode( bytes[ i ] );
-        }
-        return btoa( binary );
-    }
-
-    getPhoto(){
-        var myHeaders = new Headers();
-        fetch(new Request('http://localhost:3000/images/showallimages/' + this.state.idUser, {
-            method: 'GET',
-            cache: 'default'
-          }),myHeaders)
-        .then((resultat) =>  resultat.json())
-        .then(resultat => this.encodeImg(resultat))
-    }
 
     /** -------------- POST */
 
@@ -153,7 +108,9 @@ class AlbumComp extends React.Component{
       }
 
       componentDidMount(){
-        this.getPhoto();        
+       albumService.getPhotos(this.state.idUser).then(objAlbum => {
+           this.setState({album : objAlbum})
+       });
     }
 
     
