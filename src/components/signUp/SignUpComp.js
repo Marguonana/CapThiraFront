@@ -160,14 +160,13 @@ class SignUp extends React.Component{
 	render(){
    
         console.log("value of createAccount "  + this.state.createAccount);
-        let pseudo = (<Row><input style={styles.pseudo} type="text" placeholder="Mon pseudo" onBlur={event => this.setPseudo(event)} onChange={event => this.setPseudo(event)} value={this.state.pseudo} ></input></Row>);
-        let space = (<Row></Row>);
-        let firstname = (<Row><input style={styles.pseudo} type="text" placeholder="Prénom" onBlur={event => this.setFirstname(event)} onChange={event => this.setFirstname(event)} value={this.state.firstname} ></input></Row>);
-        let lastname = (<Row><input style={styles.pseudo} type="text" placeholder="Nom" onBlur={event => this.setLastname(event)} onChange={event => this.setLastname(event)} value={this.state.lastname} ></input></Row>);
-        let email = (<Row><input style={styles.email} type="email" placeholder="user1@wanadoo.fr" onBlur={event => this.setEmail(event)} onChange={event => this.setEmail(event)} value={this.state.email}></input></Row>);
-        let password = (<Row><input style={styles.password} type="password" placeholder="********" onChange={event => this.setPassword(event)} value={this.state.password}></input></Row>);
-        let birthday = (<Row><input style={styles.birthday} type="date" placeholder="01/01/1995" onChange={event => this.setBirthday(event)} value={this.state.birthday}></input></Row>);
-        
+        let firstname = (<input style={styles.input} type="text" placeholder="Prénom" pattern="[A-Za-z]+" title="Uniquement des lettres" onBlur={event => this.setFirstname(event)} onChange={event => this.setFirstname(event)} value={this.state.firstname} required></input>);
+        let lastname = (<input style={styles.input} type="text" placeholder="Nom"  pattern="[A-Za-z]+" title="Uniquement des lettres" onBlur={event => this.setLastname(event)} onChange={event => this.setLastname(event)} value={this.state.lastname} required></input>);
+        let pseudo = (<input style={styles.input} type="text" placeholder="Pseudo" pattern="[A-Za-z0-9]+" title="Pas de chiffre ou caractères spéciaux" onBlur={event => this.setPseudo(event)} onChange={event => this.setPseudo(event)} value={this.state.pseudo} required></input>);
+        let email = (<input style={styles.input} type="email" placeholder="Email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" onBlur={event => this.setEmail(event)} onChange={event => this.setEmail(event)} value={this.state.email} required></input>);
+        let password = (<input style={styles.input} type="password" placeholder="Mot de passe" pattern="([a-zA-Z0-9!+.&%#é@]+)" onChange={event => this.setPassword(event)} value={this.state.password} required></input>);
+        let birthday = (<input style={styles.input} type="date" placeholder="01/01/1995" onChange={event => this.setBirthday(event)} value={this.state.birthday} required></input>);
+
         let createAccount =  (
             <Container>
                 {firstname}
