@@ -4,8 +4,7 @@ export function getStyles() {
         navandbody: {
             display: "flex",
             justifyContent: "space-between"
-        }
-        ,
+        },
       deleteButton: {
         position: "absolute",
         color: "#9a9a9a",

@@ -2,6 +2,8 @@ import React from 'react';
 import toastr from 'reactjs-toastr';
 import 'reactjs-toastr/lib/toast.css';
 import Radium from 'radium';
+import NavigationComponent from './../navigation/navigationComponent';
+import CoverComp from './../cover/CoverComp';
 import { getStyles } from './albumStyle';
 import { Container, Row, Col } from 'reactstrap';
 require('moment');
@@ -65,8 +67,11 @@ class AlbumComp extends React.Component{
           response.json();
         }).then((result) => {
           console.log(result);
-          toastr.info("Adding with success !");
+          if (result.status === 200){
+            toastr.info("Adding with success !");
           window.location.reload();
+          }
+          
         }).catch((error) => {
           toastr.error("Post status : Failed !");
         });
@@ -117,41 +122,45 @@ class AlbumComp extends React.Component{
     
     render = function(){
        
-            const styles = getStyles();
-            var album = Array.from(this.state.album);
-            var colImage = album.map( (el,index) => {
-                return ( 
-                    <Col key={index} style={styles.colStyle} >
-                        <i key={'delete_' + index} onClick={(e) => this.handleClick(e, el)} className="fa fa-times" style={styles.deleteButton}></i>
-                        <img key={index + '_img'} src={el.img.data} alt="" style={styles.imageStyle} width="150px" height="150px"/>
-                        <div className="titre-image">
-                            <h4>{el.titre}</h4>
+        const styles = getStyles();
+        var colImage = this.state.album.map( (el,index) => {
+            return ( 
+                <Col key={index} style={styles.colStyle} >
+                    <i key={'delete_' + index} onClick={(e) => this.handleClick(e, el)} className="fa fa-ellipsis-v" style={styles.deleteButton}></i>
+                    <img key={index + '_img'} src={el.img.data} alt="" style={styles.imageStyle} width="150px" height="150px"/>
+                    <div className="titre-image">
+                        <h4>{el.titre}</h4>
+                    </div>
+                    <div className="post-hover text-center">
+                        <div className="inside">
+                            <i style={styles.date}>{el.datePublication}</i>
                         </div>
-                        <div className="post-hover text-center">
-                            <div className="inside">
-                                <i style={styles.date}>{el.datePublication}</i>
-                            </div>
-                        </div>
-                    </Col>
-                )
-            });
-    
-            return(
-                <div style={styles.mainPost}>
-                    <Container>
+                    </div>
+                </Col>
+            )
+        });
+
+        return(
+            <div>
+                <CoverComp />
+                <div style={styles.navandbody}>
+                    <NavigationComponent />
+                    <Container style={styles.mainPost}>
                         <Row>
                             <Row>{colImage}</Row>
-                            <Row style={styles.ajouterPhoto}><form method="post" encType="multipart/form-data" action="">
-                                    <label htmlFor="file" style={styles.labelButton}>Ajouter une image</label>
-                                    <input id="file" style={styles.button} type='file' accept='image/png,image/jpeg' name='ajouter' onChange={this.handleSelectedFile}></input>
+                            <Row style={styles.ajouterPhoto}>
+                                <form method="post" encType="multipart/form-data" action="">
+                                    <label htmlFor="file" style={styles.labelButton}>Ajouter une photo</label>
+                                    <input key="001" id="file" style={styles.button} type='file' accept='image/png,image/jpeg' name='ajouter' onChange={this.handleSelectedFile}></input>
                                 </form>
                             </Row>
                         </Row>
-                        
                     </Container>
                 </div>
-            )
-        }
+                
+            </div>
+        )
+    }
 
 }
 
