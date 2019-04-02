@@ -170,45 +170,37 @@ class SignUp extends React.Component{
         let createAccount =  (
             <Container>
                 {firstname}
-                {space}
                 {lastname}
-                {space}
                 {pseudo}
-                {space}
                 {email}
-                {space}
                 {password}
-                {space}
                 {birthday}
             </Container>
         );
 
         let validator = (
             <Container>
-                <button style={styles.button} onClick={(e) => this.validate(e)}>Confirmer</button>
+                <button style={styles.bouton} onClick={(e) => this.validate(e)}>Suivant</button>
             </Container>
         );
 
         let signIn = (
             <Container>
-                {space}
                 {email}
-                {space}
                 {password}
             </Container>
         ) ;
 
-        let signTitle =  this.state.createAccount ? (<Col style={styles.textConnexion} onClick={(e) => this.setSignTitle()}>Se connecter <i className="fa fa-chevron-right" aria-hidden="true"></i></Col>) : (<Col style={styles.textConnexion} onClick={()=>this.setSignTitle()}><i className="fa fa-chevron-left" aria-hidden="true"></i> Créer un compte</Col>) ;
+        let signTitle =  this.state.createAccount ? (<Col style={styles.link} onClick={(e) => this.setSignTitle()}>Vous avez déjà un compte ? Se connecter</Col>) : (<Col style={styles.link} onClick={()=>this.setSignTitle()}>Vous n'avez pas de compte ? Creer un compte</Col>) ;
         let groupView = this.state.createAccount ? createAccount : signIn;
-		return(
 
+		return(
             <Container style={styles.form}>
-                <Row style={styles.header}>
-                    {signTitle}
-                </Row>
-                {groupView}
-                {validator}
-                <Container style={styles.bottom}></Container>
+                <form action="/profil">
+                    <Row>{groupView}</Row>
+                    <Row>{validator}</Row>
+                    <Row>{signTitle}</Row>
+                </form>
             </Container>  
 		)
 	}
