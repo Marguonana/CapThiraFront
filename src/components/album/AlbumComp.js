@@ -67,10 +67,8 @@ class AlbumComp extends React.Component{
           response.json();
         }).then((result) => {
           console.log(result);
-          if (result.status === 200){
             toastr.info("Adding with success !");
           window.location.reload();
-          }
           
         }).catch((error) => {
           toastr.error("Post status : Failed !");
@@ -82,8 +80,8 @@ class AlbumComp extends React.Component{
         var reader = new FileReader();
         reader.onload = () => {
             dataImg.img = reader.result;
-            console.log(dataImg)
-            this.savePhoto(dataImg)
+            console.log(dataImg);
+            albumService.savePhoto(dataImg);
         }
         if (imageToSend) {
             var dataImg = {img: null,titre:imageToSend.name.substr(0,imageToSend.name.length-4),datePublication: new Date(), idUser:localStorage.getItem('id_user'), taille: imageToSend.size };
@@ -147,13 +145,13 @@ class AlbumComp extends React.Component{
                     <NavigationComponent />
                     <Container style={styles.mainPost}>
                         <Row>
-                            <Row>{colImage}</Row>
-                            <Row style={styles.ajouterPhoto}>
-                                <form>
-                                    <label htmlFor="file" style={styles.labelButton}>Ajouter une photo</label>
-                                    <input key="001" id="file" style={styles.button} type='file' accept='image/png,image/jpeg' name='ajouter' onChange={this.handleSelectedFile}></input>
-                                </form>
-                            </Row>
+                            {colImage}
+                        </Row>
+                        <Row style={styles.ajouterPhoto}>
+                            <form>
+                                <label htmlFor="file" style={styles.labelButton}>Ajouter une photo</label>
+                                <input key="001" id="file" style={styles.button} type='file' accept='image/png,image/jpeg' name='ajouter' onChange={this.handleSelectedFile}></input>
+                            </form>
                         </Row>
                     </Container>
                 </div>
