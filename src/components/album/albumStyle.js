@@ -1,12 +1,23 @@
 export function getStyles() {
     return {
+
+        navandbody: {
+            display: "flex",
+            justifyContent: "space-between"
+        }
+        ,
       deleteButton: {
         position: "absolute",
-        color: "rgb(204, 86, 86)",
+        color: "#9a9a9a",
+        borderRadius: "5px",
+        padding: "5px",
+        left: "145",
         ":hover": {
-          color: 'red',
-          cursor: "pointer",
-          transform: 'scale(2)'
+            transitionProperty: "background-color",
+            transitionDuration: ".5s",
+            transitionTimingFunction: "ease-in",
+            backgroundColor: '#e0e0e0',
+            cursor: "pointer",
         }
       },
       colStyle: {
@@ -20,9 +31,7 @@ export function getStyles() {
 
         },
         imageStyle : {
-            // height: '150px',
-            // width: '150px',
-            border: '10px solid white',
+            border: '25px solid #f3f3f3',
             marginBottom: '4%'
         },
         mainPost : {
@@ -31,7 +40,7 @@ export function getStyles() {
             marginLeft:'auto',
             marginRight: 'auto',
             width: '95%',
-            // boxShadow: '5px -2px 5px 5px #eee'
+
 
 
         },
@@ -45,18 +54,25 @@ export function getStyles() {
         },
         labelButton : {
             cursor: 'pointer',
-            color: '#00b1ca',
-            fontWeight: 'bold',
-            ':hover' : {
-                color: '#25a5c4'
+            width: "260px",
+            height: "42px",
+            margin: "26px 0px 0px",
+            padding: "5px",
+            border : "none",
+            textAlign: "center",
+            borderRadius : "25px",
+            color : "#fff",
+            backgroundColor :"#007bff",
+            ":hover" : {
+                backgroundColor: "#0062cc"
+
             }
         },
         date : {
             fontSize: '8px',
             marginBottom: '3%',
             textAlign: 'right'
-        }
-        
+        },
 
        };
   }
