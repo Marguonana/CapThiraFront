@@ -27,7 +27,7 @@ module.exports = {
         }).then((result) => {
           console.log(result);
           toastr.info("Adding with success !");
-          window.location.reload();
+        //   window.location.reload();
         }).catch((error) => {
           toastr.error("Post status : Failed !");
         });

@@ -149,7 +149,7 @@ class AlbumComp extends React.Component{
                         <Row>
                             <Row>{colImage}</Row>
                             <Row style={styles.ajouterPhoto}>
-                                <form method="post" encType="multipart/form-data" action="">
+                                <form>
                                     <label htmlFor="file" style={styles.labelButton}>Ajouter une photo</label>
                                     <input key="001" id="file" style={styles.button} type='file' accept='image/png,image/jpeg' name='ajouter' onChange={this.handleSelectedFile}></input>
                                 </form>
