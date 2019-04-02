@@ -7,7 +7,7 @@ export function getStyles(){
             paddingTop: "40px",
             paddingLeft: "24px",
             backgroundColor: "#fff",
-            boxShadow: "1px 0px 0px #f3f3f3"
+            boxShadow: "1px 0px 0px #e8e8e8"
         },
         title: {
             textAlign: "center"

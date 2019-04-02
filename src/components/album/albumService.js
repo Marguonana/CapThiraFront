@@ -1,3 +1,4 @@
+const toastr = require('reactjs-toastr');
 const albumProcess = require('./albumProcess');
 
 module.exports = {
@@ -23,11 +24,13 @@ module.exports = {
         };
         console.log(photo.taille)
         fetch("http://localhost:3000/images/post/", requestOptions).then((response) => {
+          if (response.status === 200){
+            toastr.info("Adding with success !");
+          }
           response.json();
         }).then((result) => {
           console.log(result);
-          toastr.info("Adding with success !");
-        //   window.location.reload();
+          window.location.reload();
         }).catch((error) => {
           toastr.error("Post status : Failed !");
         });
