@@ -14,10 +14,10 @@ class View extends React.Component{
     render(){
         return(
             <div>
-                {/* <MenuComponent />
+                 {/* <MenuComponent />
                 <CoverComp />
-                <AlbumComp />  */}
-                 <SignUp /> 
+                <AlbumComp />   */}
+                 <SignUp />  
             </div>
         )
     

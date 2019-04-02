@@ -2,6 +2,7 @@ import React from 'react';
 import Radium from 'radium';
 import { Container, Row, Col } from 'reactstrap';
 import { getStyles } from './signUpStyle';
+const styles = getStyles();
 
 class SignUp extends React.Component{
     constructor(props){
@@ -9,8 +10,6 @@ class SignUp extends React.Component{
         this.state = {
             createAccount : true,
             pseudo: '',
-            
-
         }
     }   
     /** SETTER ********************* */
@@ -21,6 +20,7 @@ class SignUp extends React.Component{
         }
         
     }
+    
 
     setPassword = (event)=> {
         if(event){
@@ -46,10 +46,16 @@ class SignUp extends React.Component{
         
     }
 
+    setSignTitle(){
+        this.setState({ createAccount : !this.state.createAccount});
+        this.state.createAccount ?  this.setState({ signTitle : (<Col style={styles.textConnexion} onClick={(e) => this.setState.createAccount = false}>Se connecter <i className="fa fa-chevron-right" aria-hidden="true"></i></Col>)  }) : this.setState({  signTitle :  (<Col style={styles.textConnexion} onClick={(e) => this.setState.createAccount = true}><i className="fa fa-chevron-left" aria-hidden="true"></i> Créer un compte</Col>)  })
+    };
 
 
 	render(){
-        const styles = getStyles();
+   
+        console.log("value of createAccount "  + this.state.createAccount);
+        console.log("#############################    " + this.state.signTitle)
         let pseudo = (<Row><input style={styles.pseudo} type="text" placeholder="Mon pseudo" onBlur={event => this.setPseudo(event)} onChange={event => this.setPseudo(event)} value={this.state.pseudo} ></input></Row>);
         let space = (<Row></Row>);
         let email = (<Row><input style={styles.email} type="email" placeholder="user1@wanadoo.fr" onBlur={event => this.setEmail(event)} onChange={event => this.setEmail(event)} value={this.state.email}></input></Row>);
@@ -70,7 +76,8 @@ class SignUp extends React.Component{
         ) ;
         let validator = (
             <Container>
-                <button>Confirmer</button>
+                <button style={styles.button}>Confirmer</button>
+               
             </Container>
         )
         let signIn = (
@@ -82,16 +89,17 @@ class SignUp extends React.Component{
             </Container>
         ) ;
 
+        let signTitle =  this.state.createAccount ? (<Col style={styles.textConnexion} onClick={(e) => this.setSignTitle()}>Se connecter <i className="fa fa-chevron-right" aria-hidden="true"></i></Col>) : (<Col style={styles.textConnexion} onClick={()=>this.setSignTitle()}><i className="fa fa-chevron-left" aria-hidden="true"></i> Créer un compte</Col>) ;
         let groupView = this.state.createAccount ? createAccount : signIn;
 		return(
 
             <Container style={styles.form}>
-                <Container style={styles.header}></Container>
-                <Row>
-                    <Col>Créer un compte</Col><Col></Col><Col>Se connecter</Col> 
+                <Row style={styles.header}>
+                    {signTitle}
                 </Row>
                 {groupView}
                 {validator}
+                <Container style={styles.bottom}></Container>
             </Container>  
 		)
 	}
