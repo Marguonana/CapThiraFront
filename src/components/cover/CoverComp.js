@@ -21,7 +21,7 @@ class CoverComp extends React.Component{
         const styles = getStyles();
         return(
                 <div style={styles.header}>
-                    <p>Bienvenue sur CapThira</p>
+                    <p style={styles.search}>Bienvenue sur CapThira</p>
                 </div>
 		)
 	}
