@@ -29,7 +29,7 @@ module.exports = {
           }
           response.json();
         }).then((result) => {
-          console.log(result);
+        //   console.log(result);
           window.location.reload();
         }).catch((error) => {
           toastr.error("Post status : Failed !");
@@ -44,7 +44,7 @@ module.exports = {
         fetch("http://localhost:3000/images/delete/" + el._id, requestOptions).then((response) => {
           response.json();
         }).then((result) => {
-          console.log(result);
+        //   console.log(result);
           window.location.reload();
         }).catch((error) => {
           console.error("Error with request params while delete",'',{displayDuration:200});
