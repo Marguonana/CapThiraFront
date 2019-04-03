@@ -6,8 +6,8 @@ import NavigationComponent from './../navigation/navigationComponent';
 import CoverComp from './../cover/CoverComp';
 import { getStyles } from './albumStyle';
 import { Container, Row, Col } from 'reactstrap';
-require('moment');
 
+const moment = require('moment');
 const albumService = require('./albumService');
 const albumProcess = require('./albumProcess');
 
@@ -45,7 +45,7 @@ class AlbumComp extends React.Component{
         var reader = new FileReader();
         reader.onload = () => {
             dataImg.img = reader.result;
-            console.log(dataImg);
+            // console.log(dataImg);
             albumService.savePhoto(dataImg);
         }
         if (imageToSend) {
@@ -78,7 +78,7 @@ class AlbumComp extends React.Component{
                     </div>
                     <div className="post-hover text-center">
                         <div className="inside">
-                            <i style={styles.date}>{el.datePublication}</i>
+                            <i style={styles.date}>{moment(el.datePublication).fromNow()}</i>
                         </div>
                     </div>
                 </Col>
