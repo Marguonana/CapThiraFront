@@ -5,13 +5,30 @@ export function getStyles(){
             width: "300px",
             height: "100%",
             paddingTop: "40px",
-            paddingLeft: "24px",
+            paddingLeft: "0px",
             backgroundColor: "#fff",
-            boxShadow: "1px 0px 0px #e8e8e8"
+            zIndex: "4",
+            boxShadow: "1px 0px 0px #e8e8e8",
+            overflow: 'hidden',
+            position: 'fixed',
+            minWidth: '150px'
         },
-        title: {
-            textAlign: "center"
+        item: {
+            cursor: 'pointer',
+            opacity: '0.75',
+            fontSize: '20px',
+            height: '40px',
+            paddingLeft: '10px',
+            width: '300px',
+            minWidth: '150px',
+            ':hover': {
+                opacity: '1',
+                backgroundImage : 'linear-gradient(to right, #007bffad 10px, #fbfbfb 10px)'
+            }
         },
+        ul: {
+            padding: '0px'
+        }
 
         
     }

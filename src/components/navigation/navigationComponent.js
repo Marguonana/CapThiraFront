@@ -7,17 +7,39 @@ import { getStyles } from './navigationStyle.js'
 class NavigationComponent extends React.Component{
     constructor(props){
         super(props);
+        this.state = {
+            liste : ['Mon profil', 'Mes abonnements', 'Message', 'Paramètre', 'Deconnexion']
+        }
     }
 
+
+
+     
+
        
-	render(){
+    render(){
         const styles = getStyles();
-		return(
+        let menuItem = 
+            this.state.liste.map( (el,index) => {
+                return ( 
+                        <li key={'liste' + index} style={styles.item} >{el}</li>
+                )
+            });
+
+    
+         
+        return(
                 <Nav style={styles.nav}>
-                    <span style={styles.item}>Deconnexion</span>
+                    <div style={styles.logo}>
+                        
+                    </div>
+                    <hr/>
+                    <ul style={styles.ul}>
+                        {menuItem}
+                    </ul>
                 </Nav>
-		)
-	}
+        )
+    }
 }
 
 
