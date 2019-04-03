@@ -1,5 +1,7 @@
 export function getStyles(){
 
+    const logoCapthira = require("../../images/logo.png");
+
     return {
         nav: {
             width: "300px",
@@ -27,8 +29,19 @@ export function getStyles(){
             }
         },
         ul: {
-            padding: '0px'
-        }
+            padding: '0px',
+            top: '500'
+        },
+        logoContainer: {
+            marginLeft: 'auto',
+            marginRight: 'auto',
+            width: '200px',
+            height: '200px',
+            background: "url("+logoCapthira+") no-repeat",
+            backgroundSize: '200px',
+            top: '100'
+        },
+
 
         
     }

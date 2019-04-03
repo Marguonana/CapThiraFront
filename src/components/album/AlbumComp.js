@@ -15,6 +15,9 @@ const albumProcess = require('./albumProcess');
 class AlbumComp extends React.Component{
     constructor(props){
         super(props)
+        if(!localStorage.getItem("id_user")){
+            window.location.assign('./connexion');
+        }
         this.state = {
             album: [
                 {title:"Ma premiere image",img:{

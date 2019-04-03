@@ -3,6 +3,8 @@ import Radium from 'radium';
 import { Container, Row, Col, Nav } from 'reactstrap';
 import { getStyles } from './navigationStyle.js'
 
+const navigationService = require('./navigationService');
+
 
 class NavigationComponent extends React.Component{
     constructor(props){
@@ -20,9 +22,9 @@ class NavigationComponent extends React.Component{
     render(){
         const styles = getStyles();
         let menuItem = 
-            this.state.liste.map( (el,index) => {
+            this.state.liste.map( (item,index) => {
                 return ( 
-                        <li key={'liste' + index} style={styles.item} >{el}</li>
+                        <li key={'liste' + index} style={styles.item} onClick={(e) => navigationService.nav(e, item,this.props)}>{item}</li>
                 )
             });
 
@@ -30,8 +32,8 @@ class NavigationComponent extends React.Component{
          
         return(
                 <Nav style={styles.nav}>
-                    <div style={styles.logo}>
-                        
+                    <div style={styles.logoContainer}>
+                       
                     </div>
                     <hr/>
                     <ul style={styles.ul}>
