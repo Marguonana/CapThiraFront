@@ -28,21 +28,6 @@ class AlbumComp extends React.Component{
                 }},
                 {title: "Enième img",img:{
                     data: "http://www.rangerwoodperiyar.com/images/joomlart/demo/default.jpg"
-                }},
-                {title: "Enième img",img:{
-                    data: "http://www.rangerwoodperiyar.com/images/joomlart/demo/default.jpg"
-                }},
-                {title: "Enième img",img:{
-                    data: "http://www.rangerwoodperiyar.com/images/joomlart/demo/default.jpg"
-                }},
-                {title: "Enième img",img:{
-                    data: "http://www.rangerwoodperiyar.com/images/joomlart/demo/default.jpg"
-                }},
-                {title: "Enième img",img:{
-                    data: "http://www.rangerwoodperiyar.com/images/joomlart/demo/default.jpg"
-                }},
-                {title: "Enième img",img:{
-                    data: "http://www.rangerwoodperiyar.com/images/joomlart/demo/default.jpg"
                 }}
             ],
             selectedFile: null,
@@ -54,26 +39,6 @@ class AlbumComp extends React.Component{
 
 
     /** -------------- POST */
-
-    savePhoto = (photo) => {
-        console.log(photo)
-        const requestOptions = {
-          method: 'POST',
-          body: JSON.stringify(photo),
-          headers: {"Content-Type": "application/json"}
-        };
-        console.log(photo.taille)
-        fetch("http://localhost:3000/images/post/", requestOptions).then((response) => {
-          response.json();
-        }).then((result) => {
-          console.log(result);
-            toastr.info("Adding with success !");
-          window.location.reload();
-          
-        }).catch((error) => {
-          toastr.error("Post status : Failed !");
-        });
-    }
 
     handleSelectedFile = event => {
         var imageToSend = event.target.files[0]; 
@@ -91,24 +56,6 @@ class AlbumComp extends React.Component{
         }
        
       }
-      
-   /** ---------------- DELETE */
-
-    handleClick = (e, el) => {
-          const requestOptions = {
-            method: 'DELETE'
-          };
-        
-          fetch("http://localhost:3000/images/delete/" + el._id, requestOptions).then((response) => {
-            response.json();
-          }).then((result) => {
-            console.log(result);
-            window.location.reload();
-          }).catch((error) => {
-            console.error("Error with request params while delete",'',{displayDuration:200});
-          
-          });
-      }
 
       componentDidMount(){
        albumService.getPhotos(this.state.idUser).then(objAlbum => {
@@ -124,7 +71,7 @@ class AlbumComp extends React.Component{
         var colImage = this.state.album.map( (el,index) => {
             return ( 
                 <Col key={index} style={styles.colStyle} >
-                    <i key={'delete_' + index} onClick={(e) => this.handleClick(e, el)} className="fa fa-ellipsis-v" style={styles.deleteButton}></i>
+                    <i key={'delete_' + index} onClick={(e) => albumService.deletePhoto(e, el)} className="fa fa-ellipsis-v" style={styles.deleteButton}></i>
                     <img key={index + '_img'} src={el.img.data} alt="" style={styles.imageStyle} width="150px" height="150px"/>
                     <div className="titre-image">
                         <h4>{el.titre}</h4>
@@ -148,7 +95,7 @@ class AlbumComp extends React.Component{
                             {colImage}
                         </Row>
                         <Row style={styles.ajouterPhoto}>
-                            <form>
+                            <form style={styles.form}>
                                 <label htmlFor="file" style={styles.labelButton}>Ajouter une photo</label>
                                 <input key="001" id="file" style={styles.button} type='file' accept='image/png,image/jpeg' name='ajouter' onChange={this.handleSelectedFile}></input>
                             </form>
