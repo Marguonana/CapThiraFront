@@ -41,8 +41,8 @@ module.exports = {
         const requestOptions = {
           method: 'DELETE'
         };
-      
-        fetch("http://localhost:3000/images/delete/" + el._id, requestOptions).then((response) => {
+        console.log(el)
+        fetch("http://localhost:3000/images/delete/" + el.idUser + "/" + el.key, requestOptions).then((response) => {
           response.json();
         }).then((result) => {
         //   console.log(result);
