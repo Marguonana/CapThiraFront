@@ -50,6 +50,8 @@ class AlbumComp extends React.Component{
             dataImg.img = reader.result;
             console.log(dataImg);
             albumService.savePhoto(dataImg);
+            window.location.reload();
+           // this.props.history.push('./profil');
         }
         if (imageToSend) {
             var dataImg = {img: null, name: imageToSend.name, titre:imageToSend.name.substr(0,imageToSend.name.length-4),datePublication: new Date(), idUser:localStorage.getItem('id_user'), taille: imageToSend.size };
