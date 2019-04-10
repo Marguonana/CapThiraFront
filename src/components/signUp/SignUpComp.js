@@ -144,14 +144,13 @@ class SignUp extends React.Component{
             .then(response => 
                 response.json())
             .then(response => {
-                // console.log( 'resultat --- ' + JSON.stringify(response));
+                console.log( 'resultat --- ' + JSON.stringify(response));
                 toastr.info("Welcome back !");
                 this.setToken(response.token);
                 this.setIdUser(response.idMongo);
-                //this.props.history.push("./profil");
+                this.props.history.push("./profil");
             }).catch((error) => {
-                alert(error);
-                toastr.error('Echec : Wrong login/password '+ error);
+                toastr.error('Your email or password is not correct');
             });
             
         }
@@ -197,7 +196,7 @@ class SignUp extends React.Component{
 
 		return(
             <Container style={styles.form}>
-                <form action="./profil">
+                <form action="javascript:void(0);" >
                     <Row>{groupView}</Row>
                     <Row>{validator}</Row>
                     <Row>{signTitle}</Row>

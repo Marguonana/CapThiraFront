@@ -15,9 +15,9 @@ const albumProcess = require('./albumProcess');
 class AlbumComp extends React.Component{
     constructor(props){
         super(props)
-        if(!localStorage.getItem("id_user")){
-            window.location.assign('./connexion');
-        }
+        // if(!localStorage.getItem("id_user")){
+        //     window.location.assign('./connexion');
+        // }
         this.state = {
             album: [
                 {title:"Ma premiere image",img:{
@@ -48,11 +48,11 @@ class AlbumComp extends React.Component{
         var reader = new FileReader();
         reader.onload = () => {
             dataImg.img = reader.result;
-            // console.log(dataImg);
+            console.log(dataImg);
             albumService.savePhoto(dataImg);
         }
         if (imageToSend) {
-            var dataImg = {img: null,titre:imageToSend.name.substr(0,imageToSend.name.length-4),datePublication: new Date(), idUser:localStorage.getItem('id_user'), taille: imageToSend.size };
+            var dataImg = {img: null, name: imageToSend.name, titre:imageToSend.name.substr(0,imageToSend.name.length-4),datePublication: new Date(), idUser:localStorage.getItem('id_user'), taille: imageToSend.size };
             reader.readAsDataURL(imageToSend);
         }else{
             toastr.info("Add process status : Failed !",'',{displayDuration:200})
@@ -62,7 +62,23 @@ class AlbumComp extends React.Component{
 
       componentDidMount(){
        albumService.getPhotos(this.state.idUser).then(objAlbum => {
-           this.setState({album : objAlbum})
+           var result = objAlbum;
+           var data = new Array(1);
+           if (JSON.parse(result.imgs) && JSON.parse(result.imgs).length > 0){
+                JSON.parse(result.imgs).forEach( (element,i) => {
+                    data[i] = {
+                        'titre': element.title,
+                        'datePublication': element.datePublication,
+                        'idUser': element.idUser,
+                        'taille': element.size,
+                        'key': element.key,
+                        'img': {'data' : objAlbum.listUrl[i]} ,
+                    }
+                });
+                console.log(data)
+                this.setState({album : data})
+            }
+          
        });
     }
 
@@ -71,11 +87,12 @@ class AlbumComp extends React.Component{
     render = function(){
        
         const styles = getStyles();
-        var colImage = this.state.album.map( (el,index) => {
+        var album = Array.from(this.state.album);
+        var colImage = album.map( (el,index) => {
             return ( 
                 <Col key={index} style={styles.colStyle} >
                     <i key={'delete_' + index} onClick={(e) => albumService.deletePhoto(e, el)} className="fa fa-ellipsis-v" style={styles.deleteButton}></i>
-                    <img key={index + '_img'} src={el.img.data} alt="" style={styles.imageStyle} width="150px" height="150px"/>
+                    <img key={index + '_img'} src={ el.img ? el.img.data : ''} alt="" style={styles.imageStyle} width="150px" height="150px"/>
                     <div className="titre-image">
                         <h4>{el.titre}</h4>
                     </div>
