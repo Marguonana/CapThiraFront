@@ -14,7 +14,7 @@ module.exports = {
                     img = img.substr(19, img.length); // 19 : longueur de l'entete du type
                     var dataUri = PREFIX_JPEG + img;
                 }
-                console.log(dataUri)
+                // console.log(dataUri)
                 listeImages[i].img.data = dataUri;
                 
         } 

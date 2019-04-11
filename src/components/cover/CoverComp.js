@@ -15,22 +15,14 @@ class CoverComp extends React.Component{
             data: null
         }
     }   
-    
    
     
 	render(){
         const styles = getStyles();
-		return(
-
-                    <Container style={styles.bannerStyle}>
-                        <Row>
-                            <div  style={styles.textStyle}>
-                                <h2>Ajouter une photo de couverture</h2>
-                                <p> Mettre une description.</p>
-                            </div>
-                        </Row>
-                    </Container>  
-
+        return(
+                <div style={styles.header}>
+                    <p style={styles.search}>Bienvenue sur CapThira</p>
+                </div>
 		)
 	}
 }

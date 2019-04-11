@@ -1,3 +1,4 @@
+const toastr = require('reactjs-toastr');
 const albumProcess = require('./albumProcess');
 
 module.exports = {
@@ -23,10 +24,12 @@ module.exports = {
         };
         console.log(photo.taille)
         fetch("http://localhost:3000/images/post/", requestOptions).then((response) => {
+          if (response.status === 200){
+            toastr.info("Adding with success !");
+          }
           response.json();
         }).then((result) => {
-          console.log(result);
-          toastr.info("Adding with success !");
+        //   console.log(result);
           window.location.reload();
         }).catch((error) => {
           toastr.error("Post status : Failed !");
@@ -41,7 +44,7 @@ module.exports = {
         fetch("http://localhost:3000/images/delete/" + el._id, requestOptions).then((response) => {
           response.json();
         }).then((result) => {
-          console.log(result);
+        //   console.log(result);
           window.location.reload();
         }).catch((error) => {
           console.error("Error with request params while delete",'',{displayDuration:200});

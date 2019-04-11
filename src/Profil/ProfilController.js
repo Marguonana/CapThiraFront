@@ -6,7 +6,7 @@ supprimerImage = (e, el) => {
     fetch("http://localhost:3000/images/supprimer/" + el._id, requestOptions).then((response) => {
       
     }).then((result) => {
-      console.log(result);
+      // console.log(result);
       toastr.info('Photo supprimé avec succès','',{displayDuration:200});
       render();
     }).catch((error) => {
@@ -31,7 +31,7 @@ encodeImg = (res) => {
                 img = img.substr("dataimage/jpegbase64".length, img.length);
             }else{
                 prefix = "data:image/png;base64,";
-                console.log(img)
+                // console.log(img)
                 img = img.substr("dataimage/pngbase64".length, img.length+2);
             }
             var dataUri = prefix + img;
