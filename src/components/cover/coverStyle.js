@@ -30,15 +30,11 @@ export function getStyles() {
             width: "200px",
             border: "1px solid #007bff",
             borderRight: "none", 
-            marginTop: '5px',
+            marginTop: '10px',
             padding: "5px",
             height: "30px",
             borderRadius: "5px 0 0 5px",
             outline: "none",
-            color: "#007bff",
-            ":focus":{
-                color: "#007bff"
-            }
 
         },
 
@@ -46,7 +42,7 @@ export function getStyles() {
 
             width: "40px",
             height: "30px",
-            marginTop: '5px',
+            marginTop: '10px',
             marginRight: '30px',
             border: "1px solid #007bff",
             background: "#007bff",
