@@ -11,7 +11,7 @@ export function getStyles() {
             overflow: "hidden",
             zIndex: "4",
             width: "100%",
-            background: "#fff",
+            background: "#f2f2f2",
             textAlign: "center",
             fontFamily: "Roboto",
             paddingLeft: "300px",
@@ -19,17 +19,15 @@ export function getStyles() {
             position: 'fixed'
         },
         search: {
-            
-            background: "#f2f2f2",
             fontFamily: "Open Sans",
-            width: "100%",
+            marginLeft: "auto",
             position: "relative",
             display: "flex"
         },
 
         searchTerm: {
             marginLeft: 'auto',
-            width: "150px",
+            width: "200px",
             border: "1px solid #007bff",
             borderRight: "none", 
             marginTop: '5px',

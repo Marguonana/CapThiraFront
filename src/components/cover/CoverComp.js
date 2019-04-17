@@ -21,6 +21,9 @@ class CoverComp extends React.Component{
         const styles = getStyles();
         return(
                 <div style={styles.header}>
+                    <div>
+                        TEST DIV
+                    </div>
 
                     <div style={styles.search}>
                         <input type="text" style={styles.searchTerm} placeholder="Trouver un ami" />
