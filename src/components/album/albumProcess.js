@@ -4,6 +4,7 @@ const PREFIX_PNG = "data:image/png;base64,";
 module.exports = {
 
     encodeImg : (res) => {
+        console.log(res);
         var listeImages = JSON.parse(res.imgs);    
         for(var i = 0; i < listeImages.length; i++){
             var img = _arrayBufferToBase64(listeImages[i].img.data);
@@ -30,6 +31,7 @@ module.exports = {
  * Pour encoder les images
  */
 _arrayBufferToBase64 = ( buffer ) => {
+    console.log(JSON.stringify(buffer))
     var binary = '';
     var bytes = new Uint8Array( buffer );
     var len = bytes.byteLength;

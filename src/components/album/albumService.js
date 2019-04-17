@@ -8,10 +8,11 @@ module.exports = {
         return new Promise((resolve)=>{
         fetch(new Request('http://localhost:3000/images/showallimages/' + idUser, {
             method: 'GET',
-            cache: 'default'
+            cache: 'default',
           }),myHeaders)
         .then((resultat) =>  resultat.json())
-        .then(resultat => resolve(albumProcess.encodeImg(resultat)))
+        // ANCIENNE VERSION --.then(resultat => resolve(albumProcess.encodeImg(resultat)))
+        .then(resultat => resolve((resultat)))
         });
     },
     
@@ -30,7 +31,7 @@ module.exports = {
           response.json();
         }).then((result) => {
         //   console.log(result);
-          window.location.reload();
+         // window.location.reload();
         }).catch((error) => {
           toastr.error("Post status : Failed !");
         });
@@ -40,8 +41,8 @@ module.exports = {
         const requestOptions = {
           method: 'DELETE'
         };
-      
-        fetch("http://localhost:3000/images/delete/" + el._id, requestOptions).then((response) => {
+        console.log(el)
+        fetch("http://localhost:3000/images/delete/" + el.idUser + "/" + el.key, requestOptions).then((response) => {
           response.json();
         }).then((result) => {
         //   console.log(result);
