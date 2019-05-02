@@ -10,7 +10,7 @@ class NavigationComponent extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            liste : ['Mon profil', 'Mes abonnements', 'Message', 'Paramètre', 'Deconnexion']
+            liste : ['Mon profil', 'Mes abonnements', 'Message', 'Paramètres', 'Deconnexion']
         }
     }
 

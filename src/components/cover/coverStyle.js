@@ -11,7 +11,7 @@ export function getStyles() {
             overflow: "hidden",
             zIndex: "4",
             width: "100%",
-            background: "#fff",
+            background: "#f2f2f2",
             textAlign: "center",
             fontFamily: "Roboto",
             paddingLeft: "300px",
@@ -19,8 +19,41 @@ export function getStyles() {
             position: 'fixed'
         },
         search: {
+            fontFamily: "Open Sans",
+            marginLeft: "auto",
+            position: "relative",
+            display: "flex"
+        },
+
+        searchTerm: {
             marginLeft: 'auto',
-            marginRight: 'auto'
+            width: "200px",
+            border: "1px solid #007bff",
+            borderRight: "none", 
+            marginTop: '10px',
+            padding: "5px",
+            height: "30px",
+            borderRadius: "5px 0 0 5px",
+            outline: "none",
+
+        },
+
+        searchButton: {
+
+            width: "40px",
+            height: "30px",
+            marginTop: '10px',
+            marginRight: '30px',
+            border: "1px solid #007bff",
+            background: "#007bff",
+            textAlign: "center",
+            color: "#fff",
+            borderRadius: "0 5px 5px 0",
+            cursor: "pointer",
+            fontSize: "20px",
+            ":hover": {
+                background:"#0062cc"
+            }
         }
     };
 };
