@@ -24,7 +24,7 @@ class CoverComp extends React.Component{
 
                     <div style={styles.search}>
                     
-                        <input type="text" style={styles.searchTerm} placeholder="Trouver un ami" />
+                        <input type="text" style={styles.searchTerm} placeholder="Rechercher" />
                         <button key="aa2" type="submit" style={styles.searchButton}>
                             <i className="fa fa-search"></i>
                         </button>

@@ -35,6 +35,9 @@ export function getStyles() {
             height: "30px",
             borderRadius: "5px 0 0 5px",
             outline: "none",
+            ":focus": {
+                border: "1px solid #0062cc",
+            }
 
         },
 

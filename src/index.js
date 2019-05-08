@@ -5,7 +5,6 @@ import { BrowserRouter,Route } from 'react-router-dom';
 import {browserHistory } from 'react-router';
 import CoverComp from './components/cover/CoverComp';
 import AlbumComp from './components/album/AlbumComp';
-import MenuComponent from './components/menu/MenuComponent';
  import SignUp from './components/signUp/SignupComp';
 
 

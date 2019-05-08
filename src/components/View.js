@@ -1,7 +1,6 @@
 import React from 'react';
 import CoverComp from './cover/CoverComp';
 import AlbumComp from './album/AlbumComp';
-import MenuComponent from './menu/MenuComponent';
 import SignUp from './signUp/SignupComp';
 
 
@@ -21,9 +20,6 @@ class View extends React.Component{
     render(){
         return(
             <div>
-                 {/* <MenuComponent />
-                <CoverComp />
-                <AlbumComp />   */}
                  <SignUp />  
             </div>
         )
