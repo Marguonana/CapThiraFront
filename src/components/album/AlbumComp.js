@@ -54,19 +54,24 @@ class AlbumComp extends React.Component{
            // this.props.history.push('./profil');
         }
         if (imageToSend) {
-            var dataImg = {img: null, name: imageToSend.name, titre:imageToSend.name.substr(0,imageToSend.name.length-4),datePublication: new Date(), idUser:localStorage.getItem('id_user'), taille: imageToSend.size };
+            var dataImg = { img: null, 
+                            name: imageToSend.name, 
+                            titre:imageToSend.name.substr(0,imageToSend.name.length-4),
+                            datePublication: new Date(), 
+                            idUser:localStorage.getItem('id_user'), 
+                            taille: imageToSend.size };
             reader.readAsDataURL(imageToSend);
         }else{
             toastr.info("Add process status : Failed !",'',{displayDuration:200})
         }
        
-      }
+    }
 
-      componentDidMount(){
-       albumService.getPhotos(this.state.idUser).then(objAlbum => {
-           var result = objAlbum;
-           var data = new Array(1);
-           if (JSON.parse(result.imgs) && JSON.parse(result.imgs).length > 0){
+    componentDidMount(){
+        albumService.getPhotos(this.state.idUser).then(objAlbum => {
+            var result = objAlbum;
+            var data = new Array(1);
+            if (JSON.parse(result.imgs) && JSON.parse(result.imgs).length > 0){
                 JSON.parse(result.imgs).forEach( (element,i) => {
                     data[i] = {
                         'titre': element.title,
@@ -79,9 +84,9 @@ class AlbumComp extends React.Component{
                 });
                 console.log(data)
                 this.setState({album : data})
-            }
-          
-       });
+            }      
+
+        });
     }
 
     

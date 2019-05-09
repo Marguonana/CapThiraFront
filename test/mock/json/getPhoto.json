@@ -1,0 +1,61 @@
+{
+    
+    "imgs": 
+        [
+            {
+            "_id": "5cae63e1ffbf4a2088bbe7e5",
+            "key": "JT-RxlG_Bid5V74w9RgNGRTJVx1XBRFppIZvbJ_7.png",
+            "title": "banner",
+            "idUser": "5c9a952d217531394c726255",
+            "datePublication": "2019-04-10T21:45:05.743Z",
+            "size": 106200,
+            "__v": 0
+            },
+            {
+            "_id": "5cae6732dd6b8932506618b5",
+            "key": "9bO5QKlxyDQYG8oNzkN1mQIvCkZz-sAeMSts-9Hh.jpg",
+            "title": "Computer",
+            "idUser": "5c9a952d217531394c726255",
+            "datePublication": "2019-04-10T21:59:14.710Z",
+            "size": 53936,
+            "__v": 0
+            },
+            {
+            "_id": "5cae6740dd6b8932506618b6",
+            "key": "sjXn4DdLVClOHXTDcUoA5_CMHWlkSb-jaJJWPLib.jpg",
+            "title": "Book",
+            "idUser": "5c9a952d217531394c726255",
+            "datePublication": "2019-04-10T21:59:28.361Z",
+            "size": 47698,
+            "__v": 0
+            },
+            {
+            "_id": "5cae6a4cdd6b8932506618be",
+            "key": "j_fjjWQ9iNjiriMnPSDLL36RvIrcx_Or9tZSK0Kn.jpg",
+            "title": "coq",
+            "idUser": "5c9a952d217531394c726255",
+            "datePublication": "2019-04-10T22:12:20.512Z",
+            "size": 14692,
+            "__v": 0
+            },
+            {
+            "_id": "5cae6adbdd6b8932506618c4",
+            "key": "rJ9UfBimhNryzbWe0Ex2zjexaBeK9hguUunQ3Sd_.jpg",
+            "title": "Wall",
+            "idUser": "5c9a952d217531394c726255",
+            "datePublication": "2019-04-10T22:14:51.032Z",
+            "size": 49044,
+            "__v": 0
+            },
+            {
+            "_id": "5cc9af24c272d32bc86e0720",
+            "key": "gV3xjgiaM4Qx_Un5A5DR4tJ82At-UkxKO-pQ5fPI.jpg",
+            "title": "Book",
+            "idUser": "5c9a952d217531394c726255",
+            "datePublication": "2019-05-01T14:37:24.238Z",
+            "size": 47698,
+            "__v": 0
+            }
+        ],
+    "listUrl": ["https://capthira-file.s3.eu-west-1.amazonaws.com/JT-RxlG_Bid5V74w9RgNGRTJVx1XBRFppIZvbJ_7.png?AWSAccessKeyId=AKIAJEQM5L6H6R2YFZTQ&Expires=1556741727&Signature=SmQ7eZSisrVga%2BpAGsq2q%2FqiTI8%3D","https://capthira-file.s3.eu-west-1.amazonaws.com/9bO5QKlxyDQYG8oNzkN1mQIvCkZz-sAeMSts-9Hh.jpg?AWSAccessKeyId=AKIAJEQM5L6H6R2YFZTQ&Expires=1556741727&Signature=OEZxZfDgf38O4neyUEF8rof0SWM%3D","https://capthira-file.s3.eu-west-1.amazonaws.com/sjXn4DdLVClOHXTDcUoA5_CMHWlkSb-jaJJWPLib.jpg?AWSAccessKeyId=AKIAJEQM5L6H6R2YFZTQ&Expires=1556741727&Signature=cjhOylRLqCxEvvnvsmaP8mive5M%3D","https://capthira-file.s3.eu-west-1.amazonaws.com/j_fjjWQ9iNjiriMnPSDLL36RvIrcx_Or9tZSK0Kn.jpg?AWSAccessKeyId=AKIAJEQM5L6H6R2YFZTQ&Expires=1556741727&Signature=ABRY0dWDItpk39Ka1gLvaSIUOIQ%3D","https://capthira-file.s3.eu-west-1.amazonaws.com/rJ9UfBimhNryzbWe0Ex2zjexaBeK9hguUunQ3Sd_.jpg?AWSAccessKeyId=AKIAJEQM5L6H6R2YFZTQ&Expires=1556741727&Signature=WYdUFt7zfrPPub5TapLtFMOkDtQ%3D","https://capthira-file.s3.eu-west-1.amazonaws.com/gV3xjgiaM4Qx_Un5A5DR4tJ82At-UkxKO-pQ5fPI.jpg?AWSAccessKeyId=AKIAJEQM5L6H6R2YFZTQ&Expires=1556741727&Signature=bqGYCe7ecLuUeGfBcnkTCJAOtwE%3D"]
+}
