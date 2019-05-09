@@ -10,15 +10,10 @@ class NavigationComponent extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            liste : ['Mon profil', 'Mes abonnements', 'Message', 'Paramètres', 'Deconnexion']
+            liste : ['Home','Mon profil', 'Mes abonnements', 'Message', 'Deconnexion']
         }
     }
 
-
-
-     
-
-       
     render(){
         const styles = getStyles();
         let menuItem = 
