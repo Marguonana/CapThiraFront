@@ -6,15 +6,16 @@ module.exports = {
 
         console.log(item);
         switch(item){
+            case 'Home':
+                // Afficher seulement les img de l'utilisateur
+                break;
             case 'Mon profil':
+                // Modifier mon profil
                 break;
             case 'Mes abonnements':
                 break;
             case 'Message':
                 toastr.info("Vous n'avez aucun message...");
-                break;
-            case 'Paramètres':
-                toastr.info("Aucun parametre à configurer")
                 break;
             case 'Deconnexion':
                 localStorage.removeItem("id_token");
