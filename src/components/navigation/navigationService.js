@@ -13,8 +13,8 @@ module.exports = {
             case 'Message':
                 toastr.info("Vous n'avez aucun message...");
                 break;
-            case 'Paramètre':
-                toastr.info("Aucun parametre a configurer")
+            case 'Paramètres':
+                toastr.info("Aucun parametre à configurer")
                 break;
             case 'Deconnexion':
                 localStorage.removeItem("id_token");

@@ -105,6 +105,7 @@ class SignUp extends React.Component{
             var dataToSend = {
                 "nameUser": this.state.firstname,
                 "lastname": this.state.lastname,
+                "pseudo": this.state.pseudo,
                 "age": this.getAge(),
                 "username": this.state.email,
                 "password": this.state.password
