@@ -2,7 +2,6 @@ import React from 'react';
 import Radium from 'radium';
 import { Container, Row, Col } from 'reactstrap';
 import { getStyles } from './coverStyle'
-import followPopinComp from './../pop-in/followPopinComp'
 
 /**
     CONST
