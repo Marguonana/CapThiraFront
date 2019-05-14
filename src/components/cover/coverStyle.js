@@ -1,7 +1,6 @@
 export function getStyles() {
+    const profilStandard = require("../../images/profilStandard.png");
     return {
-
-
 
         header: {
             height: "54px",
@@ -57,6 +56,67 @@ export function getStyles() {
             ":hover": {
                 background:"#0062cc"
             }
+        },
+
+
+        resultBoard : {
+            width: "300px",
+            height: "200px",
+            position: "absolute",
+            top: "10px",
+            left: "100px",
+        },
+        close: {
+            position: "fixed",
+            zIndex: "1",
+            top: "250px",
+            right: "405px"
+        },
+        resultSearch : {
+            width: "450px",
+            height: "200px",
+            top: "250px",
+            position: "fixed",
+            right: "400px",
+            backgroundColor: "white",
+            boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)"
+        },
+        photoProfil: {
+            top: "292px",
+            right: "700px",
+            position: "fixed",
+            zIndex: "1",
+            width: "80px",
+            height: "80px",
+            background: "url("+profilStandard+") no-repeat",
+            backgroundSize: "80px"
+        },
+        pseudoStyle: {
+            top: "314px",
+            right: "517px",
+            position: "fixed",
+            zIndex: "1",
+            fontFamily: "cursive",
+            fontSize: "larger"
+        },
+
+        rectangle:{
+            top: "397px",
+            right: "463px",
+            width: "100px",
+            position: "fixed",
+            height: "25px",
+            background: "#88b7d5",
+        },
+        triangle: {
+            top: "379px",
+            right: "414px",
+            position: "fixed",
+            width: "0",
+            height: "0",
+            borderTop: "30px solid transparent",
+            borderLeft: "50px solid rgb(136, 183, 213)",
+            borderBottom: "30px solid transparent"
         }
     };
 };

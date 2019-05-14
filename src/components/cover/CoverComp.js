@@ -2,6 +2,7 @@ import React from 'react';
 import Radium from 'radium';
 import { Container, Row, Col } from 'reactstrap';
 import { getStyles } from './coverStyle'
+import followPopinComp from './../pop-in/followPopinComp'
 
 /**
     CONST
@@ -25,17 +26,26 @@ class CoverComp extends React.Component{
     
 	render(){
         const styles = getStyles();
+        if (this.state.displayPopin){
+            
+        }
         return(
                 <div style={styles.header}>
 
                     <div style={styles.search}>
-                    
                         <input id="searchText" type="text" style={styles.searchTerm} placeholder="Rechercher" />
                         <button id="searchButton" key="aa2" type="submit" style={styles.searchButton} onClick={(e) => this.setState({displayPopin : (coverProcess.findUserProcess( document.getElementById("searchText")) ? document.getElementById("searchText").value : false ) }) }>
                             <i className="fa fa-search"></i>
                         </button>
                     </div>
-                    
+                    <div style={styles.resultBoard}>
+                        <i style={styles.close} className="fas fa-times"></i>
+                         <p style={styles.resultSearch}>Un utilisateur à été trouvé !</p>
+                         <div style={styles.photoProfil}></div><span style={styles.pseudoStyle}>Danyy33</span>
+                         <span style={styles.rectangle}>s'abonner</span><span style={styles.triangle}></span>
+                        
+
+                    </div>
                 </div>
 		)
 	}
