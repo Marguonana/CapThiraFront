@@ -38,7 +38,6 @@ export function getStyles() {
                 marginLeft:'300px',
                 marginRight: 'auto',
                 width: '95%',
-                position: "absolute",
                 opacity:" .99"
             },
             form: {
