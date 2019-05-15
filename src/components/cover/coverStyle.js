@@ -70,7 +70,8 @@ export function getStyles() {
             position: "fixed",
             zIndex: "1",
             top: "250px",
-            right: "405px"
+            right: "405px",
+            cursor: "pointer"
         },
         resultSearch : {
             width: "450px",
@@ -106,7 +107,12 @@ export function getStyles() {
             width: "100px",
             position: "fixed",
             height: "25px",
-            background: "#88b7d5",
+            backgroundColor: "#007bffd1",
+            color: "white",
+            cursor: 'pointer',
+            ":hover" : {
+                backgroundColor: "#0062cc"
+            }
         },
         triangle: {
             top: "379px",
@@ -115,7 +121,7 @@ export function getStyles() {
             width: "0",
             height: "0",
             borderTop: "30px solid transparent",
-            borderLeft: "50px solid rgb(136, 183, 213)",
+            borderLeft: "50px solid #007bffd1",
             borderBottom: "30px solid transparent"
         }
     };

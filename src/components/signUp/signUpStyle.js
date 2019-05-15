@@ -40,7 +40,8 @@ export function getStyles(){
             marginTop: "12px",
             fontSize: "12px",
             height: "18px",
-            color: "#17a2b8"
+            color: "#17a2b8",
+            cursor : "pointer"
         }
     }
 }

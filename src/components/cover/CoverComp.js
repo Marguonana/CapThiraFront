@@ -20,31 +20,68 @@ class CoverComp extends React.Component{
             displayPopin : false,
             data: null
         }
-    }   
+    }  
+    
+    closePopin = (e) => {
+        this.setState({displayPopin : false})
+    }
+
+    lookUp = (event) => {
+        if ( !document.getElementById("searchText") && !document.getElementById("searchText").value){
+            console.log("Saisie non valide");
+            return false;
+        }
+        coverProcess.findUserProcess(document.getElementById("searchText").value).then( 
+            (retour) => {
+                if(retour && retour.show){
+                    this.setState({ data : retour.result})
+                    this.setState({displayPopin : retour.show });
+                    console.log(retour.result);
+                }
+            }
+
+        )
+    }
+
+    /**
+     * idUser : id de l'uilisateur qui va obtenir un abonné en plus
+     */
+    subscribe = (event) => {
+        const info = 
+                    {   "idUser" : this.data.user[0]._id,
+                        "idSubscriber" : localStorage.getItem('id_user'),
+                        "pseudoSubscriber" : localStorage.getItem('pseudo_user')
+                    };
+        coverProcess.subscribeProcess(info);
+        this.closePopin();
+        // Redirection vers fil d'actu
+    }
    
     
 	render(){
         const styles = getStyles();
+        let popin = (<div></div>);
         if (this.state.displayPopin){
-            
-        }
+            popin = (
+                <div style={styles.resultBoard}>
+                    <i style={styles.close} className="fas fa-times" onClick={(e) => this.closePopin(e)}></i>
+                    <p style={styles.resultSearch}>Un utilisateur à été trouvé !</p>
+                    <div style={styles.photoProfil}></div><span key="userFound1" style={styles.pseudoStyle}> {this.state.data ? this.state.data.user[0].pseudo : '' }</span>
+                    <span key="rect1" style={styles.rectangle} onClick={(e) => this.subscribe(e)}>s'abonner</span><span key="tri1" style={styles.triangle}></span>
+                 </div>
+            );
+        };
         return(
                 <div style={styles.header}>
 
                     <div style={styles.search}>
                         <input id="searchText" type="text" style={styles.searchTerm} placeholder="Rechercher" />
-                        <button id="searchButton" key="aa2" type="submit" style={styles.searchButton} onClick={(e) => this.setState({displayPopin : (coverProcess.findUserProcess( document.getElementById("searchText")) ? document.getElementById("searchText").value : false ) }) }>
+                        <button id="searchButton" key="aa2" type="submit" style={styles.searchButton} onClick={(e) =>  this.lookUp(event) }>
                             <i className="fa fa-search"></i>
                         </button>
                     </div>
-                    <div style={styles.resultBoard}>
-                        <i style={styles.close} className="fas fa-times"></i>
-                         <p style={styles.resultSearch}>Un utilisateur à été trouvé !</p>
-                         <div style={styles.photoProfil}></div><span style={styles.pseudoStyle}>Danyy33</span>
-                         <span style={styles.rectangle}>s'abonner</span><span style={styles.triangle}></span>
-                        
-
-                    </div>
+                    {popin}
+                   
                 </div>
 		)
 	}
