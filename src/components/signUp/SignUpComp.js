@@ -74,7 +74,7 @@ class SignUp extends React.Component{
         return parseInt(moment(this.state.birthday).fromNow());
     }
 
-    /****************************** TOKEN */
+    /****************************** User */
     setIdUser(idUser) {
         localStorage.setItem('id_user', idUser);
     }
@@ -83,6 +83,15 @@ class SignUp extends React.Component{
         return localStorage.getItem('id_user');
     }
 
+
+    /****************************** User */
+    setPseudoUser(pseudoUser) {
+        localStorage.setItem('pseudo_user', pseudoUser);
+    }
+
+    getPseudoUser() {
+        return localStorage.getItem('pseudo_user');
+    }
 
     /****************************** TOKEN */
     setToken(idToken) {
@@ -93,7 +102,10 @@ class SignUp extends React.Component{
         return localStorage.getItem('id_token')
     }
 
+
     logout() {
+        localStorage.removeItem('id_user');
+        localStorage.removeItem('pseudo_user');
         localStorage.removeItem('id_token');
     }
 
@@ -149,6 +161,7 @@ class SignUp extends React.Component{
                 toastr.info("Welcome back !");
                 this.setToken(response.token);
                 this.setIdUser(response.idMongo);
+                this.setPseudoUser(response.pseudo);
                 this.props.history.push("./profil");
             }).catch((error) => {
                 toastr.error('Your email or password is not correct');

@@ -3,7 +3,7 @@ export function getStyles() {
 
         navandbody: {
             display: "flex",
-            justifyContent: "space-between"
+            justifyContent: "space-between",
         },
         deleteButton: {
             position: "absolute",
@@ -38,7 +38,7 @@ export function getStyles() {
                 marginLeft:'300px',
                 marginRight: 'auto',
                 width: '95%',
-               
+                opacity:" .99"
             },
             form: {
                 display: 'inline-block',
