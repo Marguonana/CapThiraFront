@@ -19,11 +19,15 @@ module.exports = {
             body: JSON.stringify(infoSubscriber),
             headers: {"Content-Type": "application/json"}
           };
-          fetch('http://localhost:3000/users/subscribe/', requestOptions).then((response) => {
-            if (response.status === 200){
-              toastr.info("New friend !");
-            }
-            response.json();
-          })
+          return new Promise((resolve, reject)=>{
+            fetch('http://localhost:3000/users/subscribe/', requestOptions)
+            .then((response) => {
+                if (response.status === 200){
+                    resolve(response.status);
+                }else{
+                    reject('error');
+                }
+            })
+        });
     }
 }
