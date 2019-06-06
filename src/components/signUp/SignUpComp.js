@@ -19,7 +19,6 @@ class SignUp extends React.Component{
     setPseudo = (event)=> {
         if(event){
             this.setState({pseudo : event.target.value});
-            console.log(this.state.pseudo)
         }
         
     }
@@ -27,7 +26,6 @@ class SignUp extends React.Component{
     setFirstname = (event)=> {
         if(event){
             this.setState({firstname : event.target.value});
-            console.log(this.state.firstname)
         }
         
     }
@@ -35,7 +33,6 @@ class SignUp extends React.Component{
     setLastname = (event)=> {
         if(event){
             this.setState({lastname : event.target.value});
-            console.log(this.state.lastname)
         }
         
     }
@@ -44,7 +41,6 @@ class SignUp extends React.Component{
     setPassword = (event)=> {
         if(event){
             this.setState({password : event.target.value});
-            console.log(this.state.password)
         }
         
     }
@@ -52,7 +48,6 @@ class SignUp extends React.Component{
     setBirthday = (event)=> {
         if(event){
             this.setState({birthday : event.target.value});
-            console.log(this.state.birthday)
         }
         
     }
@@ -60,7 +55,6 @@ class SignUp extends React.Component{
     setEmail = (event)=> {
         if(event){
             this.setState({email : event.target.value});
-            console.log(this.state.email)
         }
         
     }

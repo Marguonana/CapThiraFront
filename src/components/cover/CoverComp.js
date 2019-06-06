@@ -1,4 +1,6 @@
 import React from 'react';
+import toastr from 'reactjs-toastr';
+import 'reactjs-toastr/lib/toast.css';
 import Radium from 'radium';
 import { Container, Row, Col } from 'reactstrap';
 import { getStyles } from './coverStyle'
@@ -31,16 +33,16 @@ class CoverComp extends React.Component{
             console.log("Saisie non valide");
             return false;
         }
-        coverProcess.findUserProcess(document.getElementById("searchText").value).then( 
+        coverProcess.findUserProcess(document.getElementById("searchText").value)
+        .then( 
             (retour) => {
                 if(retour && retour.show){
                     this.setState({ data : retour.result})
                     this.setState({displayPopin : retour.show });
                     console.log(retour.result);
                 }
-            }
-
-        )
+        })
+        .catch( err => { toastr.warning('This user doesn\'t exist') } )
     }
 
     /**
@@ -48,11 +50,24 @@ class CoverComp extends React.Component{
      */
     subscribe = (event) => {
         const info = 
-                    {   "idUser" : this.data.user[0]._id,
-                        "idSubscriber" : localStorage.getItem('id_user'),
-                        "pseudoSubscriber" : localStorage.getItem('pseudo_user')
+                    {   "idSubscriber" : localStorage.getItem('id_user'),
+                        "pseudoSubscriber" : localStorage.getItem('pseudo_user'),
+                        "idSubscription" : this.state.data.user[0]._id,
+                        "pseudoSubscription" : this.state.data.user[0].pseudo
                     };
-        coverProcess.subscribeProcess(info);
+        coverProcess.subscribeProcess(info)
+            .then( result => {
+                if (result === 200){
+                    toastr.success('Subscription done with success');
+                    setTimeout(function() {}, 3000);
+                    window.location.assign("./trend");
+                }else{
+                    toastr.warning('Error: '+ result);
+                }}
+            )
+            .catch( err => {
+                toastr.error('Error while subscribe');
+            })
         this.closePopin();
         // Redirection vers fil d'actu
     }

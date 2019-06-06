@@ -1,4 +1,6 @@
 import React from 'react';
+import toastr from 'reactjs-toastr';
+import 'reactjs-toastr/lib/toast.css';
 import Radium from 'radium';
 import { Container, Row, Col, Nav } from 'reactstrap';
 import { getStyles } from './navigationStyle.js'
@@ -14,6 +16,11 @@ class NavigationComponent extends React.Component{
         }
     }
 
+
+    toastrContainer = () => {
+        return (<div id="toast-container" style={styles.toastr}></div>);
+    }
+
     render(){
         const styles = getStyles();
         let menuItem = 
@@ -27,6 +34,7 @@ class NavigationComponent extends React.Component{
          
         return(
                 <Nav style={styles.nav}>
+                    <div id="toast-container" style={styles.toastr}></div>
                     <div style={styles.logoContainer}>
                        
                     </div>

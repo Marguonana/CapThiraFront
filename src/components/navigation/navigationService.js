@@ -7,10 +7,10 @@ module.exports = {
         console.log(item);
         switch(item){
             case 'Home':
-                // Afficher seulement les img de l'utilisateur
+                window.location.assign("./trend");
                 break;
             case 'Mon profil':
-                // Modifier mon profil
+                window.location.assign("./profil");
                 break;
             case 'Mes abonnements':
                 break;
