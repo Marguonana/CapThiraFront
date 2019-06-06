@@ -22,7 +22,9 @@ const Root = () => {
     )
 }
 
-
+/**
+ * A completer
+ */
 const Path_URL = {
     SHOW_ALL_USER: "http://localhost:3000/users/showallusers/",
     SUBSCRIBE: "http://localhost:3000/users/subscribe/",

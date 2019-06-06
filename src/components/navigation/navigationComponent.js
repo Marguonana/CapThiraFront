@@ -16,6 +16,11 @@ class NavigationComponent extends React.Component{
         }
     }
 
+
+    toastrContainer = () => {
+        return (<div id="toast-container" style={styles.toastr}></div>);
+    }
+
     render(){
         const styles = getStyles();
         let menuItem = 

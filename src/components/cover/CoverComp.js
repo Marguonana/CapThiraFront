@@ -42,7 +42,7 @@ class CoverComp extends React.Component{
                     console.log(retour.result);
                 }
         })
-        .catch( err => { toastr.warning('This user don\'t exist') } )
+        .catch( err => { toastr.warning('This user doesn\'t exist') } )
     }
 
     /**

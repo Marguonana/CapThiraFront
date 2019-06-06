@@ -41,18 +41,18 @@ class ActuComp extends React.Component{
     }
 
     componentDidMount(){
-        actuProcess.getNewsProcess(this.state.idUser).then(objAlbum => {
-            var result = objAlbum;
+        actuProcess.getNewsProcess(this.state.idUser).then(dataSubscription => {
             var data = new Array(1);
-            if (JSON.parse(result.imgs) && JSON.parse(result.imgs).length > 0){
-                JSON.parse(result.imgs).forEach( (element,i) => {
+            if (dataSubscription.result && dataSubscription.result.listImgs && dataSubscription.result.listImgs.length > 0){
+                dataSubscription.result.listImgs.forEach( (element,i) => {
                     data[i] = {
                         'titre': element.title,
                         'datePublication': element.datePublication,
+                        'pseudo': element.pseudo,
                         'idUser': element.idUser,
                         'taille': element.size,
                         'key': element.key,
-                        'img': {'data' : objAlbum.listUrl[i]} ,
+                        'img': {'data' : dataSubscription.result.listUrl[i]} ,
                     }
                 });
                 console.log(data)
@@ -70,11 +70,15 @@ class ActuComp extends React.Component{
         var album = Array.from(this.state.album);
         var colImage = album.map( (el,index) => {
             return ( 
-                <Col key={index} style={styles.colStyle} >    
-                    <img key={index + '_img'} src={ el.img ? el.img.data : ''} alt="" style={styles.imageStyle} width="300px" height="300px"/>
-                    <div className="titre-image">
+                <Col key={index} style={styles.colStyle} >
+                    <div className="titre-image" style={styles.description}>
+                        <i class="fa fa-user" aria-hidden="true"></i><span>{el.pseudo}</span>
+                    </div>    
+                    <img key={index + '_img'} src={ el.img ? el.img.data : ''} alt="" style={styles.imageStyle} width="500px" height="500px"/>
+                    <div style={styles.icons}><i class="fa fa-comment" aria-hidden="true" style={styles.iconComment}></i><i className="fa fa-thumbs-up" aria-hidden="true" style={styles.iconLike}></i></div>
+                    {/* <div className="titre-image">
                         <h4>{el.titre}</h4>
-                    </div>
+                    </div> */}
                 </Col>
             )
         });

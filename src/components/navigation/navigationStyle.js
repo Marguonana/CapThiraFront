@@ -42,7 +42,6 @@ export function getStyles(){
         },
         toastr: {
             width: '300px',
-            height: '0px',
             top: '0px',
             left: '0px',
             position: 'fixed',
@@ -52,8 +51,8 @@ export function getStyles(){
             marginBottom: '8px',
             textShadow: '0 1px 0 rgba(255, 255, 255, 0.5)',
             border: '2px solid',
-            backgroundColor: '#d9edf7',
-            borderColor: '#bce8f1',
+            backgroundColor: '#d9edf71f',
+            borderColor: '#bce8f100',
             borderRadius: '4px',
             ':hover' : {
                 boxShadow: '#999 0 0 8px',

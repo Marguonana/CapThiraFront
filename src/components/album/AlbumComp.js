@@ -50,7 +50,7 @@ class AlbumComp extends React.Component{
             dataImg.img = reader.result;
             console.log(dataImg);
             albumService.savePhoto(dataImg);
-            window.location.reload();
+            // window.location.reload();
            // this.props.history.push('./profil');
         }
         if (imageToSend) {
@@ -59,6 +59,7 @@ class AlbumComp extends React.Component{
                             titre:imageToSend.name.substr(0,imageToSend.name.length-4),
                             datePublication: new Date(), 
                             idUser:localStorage.getItem('id_user'), 
+                            pseudo: localStorage.getItem('pseudo_user'),
                             taille: imageToSend.size };
             reader.readAsDataURL(imageToSend);
         }else{

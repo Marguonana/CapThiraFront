@@ -8,7 +8,7 @@ module.exports = {
         }
         return new Promise((resolve, reject)=>{
             actuService.findUserService(userPseudo).then((result)=> {
-                if (!result || result.user.length < 1){
+                if (!result || (result.listImgs && result.listImgs.length < 1) ){
                     return reject();
                 }
                 return resolve({"result" : result, "show" : true});
