@@ -50,7 +50,7 @@ class AlbumComp extends React.Component{
             dataImg.img = reader.result;
             console.log(dataImg);
             albumService.savePhoto(dataImg);
-            // window.location.reload();
+            window.location.reload();
            // this.props.history.push('./profil');
         }
         if (imageToSend) {
@@ -100,7 +100,7 @@ class AlbumComp extends React.Component{
         var colImage = album.map( (el,index) => {
             return ( 
                 <Col key={index} style={styles.colStyle} >
-                    <i key={'delete_' + index} onClick={(e) => albumService.deletePhoto(e, el)} className="fa fa-ellipsis-v" style={styles.deleteButton}></i>
+                    <i key={'delete_' + index} onClick={(e) => albumService.deletePhoto(e, el)} className="fas fa-trash" style={styles.deleteButton}></i>
                     <img key={index + '_img'} src={ el.img ? el.img.data : ''} alt="" style={styles.imageStyle} width="150px" height="150px"/>
                     <div className="titre-image">
                         <h4>{el.titre}</h4>
