@@ -35,12 +35,12 @@ export function getStyles() {
         },
         iconComment: {
             position: 'relative',
-            left: '420px',
+            left: '400px',
             cursor: 'pointer'
         },
         iconLike: {
             position: 'relative',
-            left: '440px',
+            left: '430px',
             cursor: 'pointer'
         },
         iconProfil: {

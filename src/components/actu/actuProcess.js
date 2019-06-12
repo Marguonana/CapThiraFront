@@ -15,6 +15,17 @@ module.exports = {
                 // flag pour display popin avec logo de la personne + bouton s'abonner
             });
         });
-
+    },
+    addLikeProcess: (event, element) => {
+        const data =  {
+            pseudo: localStorage.getItem('pseudo_user'),
+            idUser: localStorage.getItem('id_user'),
+            idImage: element.idImage
+        };
+        if (!data.pseudo || !data.idUser || !data.idImage){
+            console.log('Header error')
+            return false;
+        }
+        actuService.likeService(data);
     }
 }

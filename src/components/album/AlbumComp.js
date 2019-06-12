@@ -44,8 +44,8 @@ class AlbumComp extends React.Component{
     /** -------------- POST */
 
     handleSelectedFile = event => {
-        var imageToSend = event.target.files[0]; 
-        var reader = new FileReader();
+        const imageToSend = event.target.files[0]; 
+        const reader = new FileReader();
         reader.onload = () => {
             dataImg.img = reader.result;
             console.log(dataImg);
@@ -71,8 +71,8 @@ class AlbumComp extends React.Component{
     /*********** GET ************************* */
     componentDidMount(){
         albumService.getPhotos(this.state.idUser).then(objAlbum => {
-            var result = objAlbum;
-            var data = new Array(1);
+            const result = objAlbum;
+            const data = new Array(1);
             if (JSON.parse(result.imgs) && JSON.parse(result.imgs).length > 0){
                 JSON.parse(result.imgs).forEach( (element,i) => {
                     data[i] = {
@@ -96,8 +96,8 @@ class AlbumComp extends React.Component{
     render = function(){
        
         const styles = getStyles();
-        var album = Array.from(this.state.album);
-        var colImage = album.map( (el,index) => {
+        const album = Array.from(this.state.album);
+        const colImage = album.map( (el,index) => {
             return ( 
                 <Col key={index} style={styles.colStyle} >
                     <i key={'delete_' + index} onClick={(e) => albumService.deletePhoto(e, el)} className="fas fa-trash" style={styles.deleteButton}></i>

@@ -4,14 +4,13 @@ const albumProcess = require('./albumProcess');
 module.exports = {
 
     getPhotos: (idUser) => {
-        var myHeaders = new Headers();
+        const myHeaders = new Headers();
         return new Promise((resolve)=>{
         fetch(new Request('http://localhost:3000/images/showallimages/' + idUser, {
             method: 'GET',
             cache: 'default',
           }),myHeaders)
         .then((resultat) =>  resultat.json())
-        // ANCIENNE VERSION --.then(resultat => resolve(albumProcess.encodeImg(resultat)))
         .then(resultat => resolve((resultat)))
         });
     },

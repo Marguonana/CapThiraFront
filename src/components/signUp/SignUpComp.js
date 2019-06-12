@@ -108,7 +108,7 @@ class SignUp extends React.Component{
         if (this.state.createAccount){
 
             //TODO Ajouter la gestion des erreurs si tt les champs pr createAccount ne sont pas remplis
-            var dataToSend = {
+            const dataToSend = {
                 "nameUser": this.state.firstname,
                 "lastname": this.state.lastname,
                 "pseudo": this.state.pseudo,
@@ -117,7 +117,7 @@ class SignUp extends React.Component{
                 "password": this.state.password
             }
 
-            var requestOptions = {
+            const requestOptions = {
                 method: 'POST',
                 body: JSON.stringify(dataToSend),
                 headers: {"Content-Type": "application/json"}
@@ -136,12 +136,12 @@ class SignUp extends React.Component{
         }else{
 
             //TODO Ajouter la gestion des erreurs si tt les champs pr createAccount ne sont pas remplis
-            var dataToSend = {
+            const dataToSend = {
                 "username": this.state.email,
                 "password": this.state.password
             }
 
-            var requestOptions = {
+            const requestOptions = {
                 method: 'GET',
                 headers: {'Accept': 'application/json',"Content-Type": "application/json"}
             };
