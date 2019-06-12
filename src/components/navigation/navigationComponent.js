@@ -12,7 +12,8 @@ class NavigationComponent extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            liste : ['Home','Mon profil', 'Mes abonnements', 'Message', 'Deconnexion']
+            liste : ['Home','Mon profil', 'Mes abonnements', 'Message', 'Deconnexion'],
+            user : localStorage.getItem('pseudo_user')
         }
     }
 
@@ -39,6 +40,7 @@ class NavigationComponent extends React.Component{
                        
                     </div>
                     <hr/>
+                    <div style={styles.welcome}>Connected as <b>{this.state.user}</b></div>
                     <ul style={styles.ul}>
                         {menuItem}
                     </ul>

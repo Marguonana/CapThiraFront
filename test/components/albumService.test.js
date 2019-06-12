@@ -2,8 +2,6 @@ import React from 'react';
 import Link from './Link.react';
 import renderer from 'react-test-renderer';
 const mockAlbum = require('./../mock/mock.albumService');
-// shallowRenderer.render(<About />);
-// const about = shallowRenderer.getRenderOutput();
 
 test('Should not be null', () => {
   const n = "";

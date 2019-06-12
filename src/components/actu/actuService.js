@@ -12,5 +12,19 @@ module.exports = {
             .then(resultat => resolve((resultat)))
             .catch(err => reject())
         });
-    }
+    },
+
+    likeService: (data) => {
+        const requestOptions = {
+            method: 'POST',
+            body: JSON.stringify(data),
+            headers: {"Content-Type": "application/json"}
+          };
+          fetch("http://localhost:3000/images/like/", requestOptions).then((response) => {
+            response.json();
+          }).then((result) => {
+          }).catch((error) => {
+            toastr.error("Error : Failed while adding like !");
+          });
+        },
 }

@@ -27,6 +27,12 @@ export function getStyles(){
                 backgroundImage : 'linear-gradient(to right, #007bffad 10px, #fbfbfb 10px)'
             }
         },
+        welcome: {
+            top: '500',
+            marginLeft: '50px',
+            width: '200px',
+            fontFamily: "Gill Sans"
+        },
         ul: {
             padding: '0px',
             top: '500'
