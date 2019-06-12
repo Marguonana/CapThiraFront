@@ -10,7 +10,7 @@ export function getStyles() {
             color: "#9a9a9a",
             borderRadius: "5px",
             padding: "5px",
-            left: "145",
+            left: "140",
             ":hover": {
                 transitionProperty: "background-color",
                 transitionDuration: ".5s",
