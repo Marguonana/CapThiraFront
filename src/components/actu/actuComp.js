@@ -68,6 +68,9 @@ class ActuComp extends React.Component{
        
         const styles = getStyles();
         var album = Array.from(this.state.album);
+        album.sort(function(current, next){
+            return new Date(next.datePublication) - new Date(current.datePublication);
+        });
         var colImage = album.map( (el,index) => {
             return ( 
                 <Col key={index} style={styles.colStyle} >
