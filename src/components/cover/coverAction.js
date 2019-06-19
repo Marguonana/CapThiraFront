@@ -1,7 +1,7 @@
 const coverService = require('./coverService');
 
 module.exports = {
-    findUserProcess: (userPseudo) => {
+    findUserAction: (userPseudo) => {
         if (!userPseudo){
             console.log('Error: Empty request');
             return false;
@@ -18,7 +18,7 @@ module.exports = {
 
     },
 
-    subscribeProcess: (infoSubscriber) => {
+    subscribeAction: (infoSubscriber) => {
         return new Promise((resolve,reject) => {           
             coverService.subscribeService(infoSubscriber)
             .then( result => {

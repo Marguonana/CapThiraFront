@@ -9,7 +9,7 @@ import { Container, Row, Col } from 'reactstrap';
 
 const moment = require('moment');
 const albumService = require('./albumService');
-const albumProcess = require('./albumProcess');
+const albumAction = require('./albumAction');
 
 
 class AlbumComp extends React.Component{
@@ -49,8 +49,14 @@ class AlbumComp extends React.Component{
         reader.onload = () => {
             dataImg.img = reader.result;
             console.log(dataImg);
-            albumService.savePhoto(dataImg);
-            window.location.reload();
+            //albumService.savePhoto(dataImg);
+            albumAction.savePhotoAction(dataImg)
+            .then(statut => {
+                window.location.reload();
+            })
+            .catch(err => {
+                err ? toastr.error(err) : toastr.error("Error while adding photo");
+            }) 
            // this.props.history.push('./profil');
         }
         if (imageToSend) {
@@ -84,13 +90,12 @@ class AlbumComp extends React.Component{
                         'img': {'data' : objAlbum.listUrl[i]} ,
                     }
                 });
-                console.log(data)
+                //console.log(data)
                 this.setState({album : data})
             }      
 
         });
     }
-
     
     
     render = function(){

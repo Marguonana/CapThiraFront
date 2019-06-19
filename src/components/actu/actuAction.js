@@ -1,7 +1,7 @@
 const actuService = require('./actuService');
 
 module.exports = {
-    getNewsProcess: (userPseudo) => {
+    getNewsAction: (userPseudo) => {
         if (!userPseudo){
             console.log('Error: Empty request');
             return false;
@@ -13,10 +13,13 @@ module.exports = {
                 }
                 return resolve({"result" : result, "show" : true});
                 // flag pour display popin avec logo de la personne + bouton s'abonner
-            });
+            })
+            .catch(err => {
+                return reject();
+            })
         });
     },
-    addLikeProcess: (event, element) => {
+    addLikeAction: (event, element) => {
         const data =  {
             pseudo: localStorage.getItem('pseudo_user'),
             idUser: localStorage.getItem('id_user'),
@@ -27,5 +30,6 @@ module.exports = {
             return false;
         }
         actuService.likeService(data);
+        window.location.reload();
     }
 }

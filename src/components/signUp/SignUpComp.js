@@ -5,6 +5,8 @@ import { getStyles } from './signupStyle';
 import toastr from 'reactjs-toastr';
 import 'reactjs-toastr/lib/toast.css';
 const styles = getStyles();
+const signupAction = require('./signupAction');
+const signupService = require('./signupService');
 const moment = require("moment");
 
 class SignUp extends React.Component{
@@ -104,70 +106,54 @@ class SignUp extends React.Component{
     }
 
     validate =(e) => {
+        this.state.createAccount ? this.goCreateAccount() : this.goConnexion();           
+    }
 
-        if (this.state.createAccount){
+    /********************************Login methos ****************** */
 
-            //TODO Ajouter la gestion des erreurs si tt les champs pr createAccount ne sont pas remplis
-            const dataToSend = {
-                "nameUser": this.state.firstname,
-                "lastname": this.state.lastname,
-                "pseudo": this.state.pseudo,
-                "age": this.getAge(),
-                "username": this.state.email,
-                "password": this.state.password
-            }
-
-            const requestOptions = {
-                method: 'POST',
-                body: JSON.stringify(dataToSend),
-                headers: {"Content-Type": "application/json"}
-              };
-            //   console.log("Données : " + dataToSend)
-              fetch("http://localhost:3000/users/post/", requestOptions).then((response) => {
-                response.json();
-              }).then((result) => {
-                console.log(result);
-                toastr.info("New user added !");
-                window.location.reload();
-              }).catch((error) => {
-                toastr.error('Request status : Failed ! Have you missed something?');
-              });
-
-        }else{
-
-            //TODO Ajouter la gestion des erreurs si tt les champs pr createAccount ne sont pas remplis
-            const dataToSend = {
-                "username": this.state.email,
-                "password": this.state.password
-            }
-
-            const requestOptions = {
-                method: 'GET',
-                headers: {'Accept': 'application/json',"Content-Type": "application/json"}
-            };
-
-            console.log("Données : " + JSON.stringify(dataToSend));
-            fetch("http://localhost:3000/users/login/" + this.state.email + "/" + this.state.password, requestOptions)
-            .then(response => 
-                response.json())
-            .then(response => {
-                console.log( 'resultat --- ' + JSON.stringify(response));
-                toastr.info("Welcome back !");
-                this.setToken(response.token);
-                this.setIdUser(response.idMongo);
-                this.setPseudoUser(response.pseudo);
-                this.props.history.push("./profil");
-            }).catch((error) => {
-                toastr.error('Your email or password is not correct');
-            });
-            
+    goConnexion = () => {
+        const dataToSend = {
+            "username": this.state.email,
+            "password": this.state.password
         }
-            
+        signupService.connexion(dataToSend)
+        .then(res => {
+            if (res !== "KO"){
+                this.setToken(res.token);
+                this.setIdUser(res.idMongo);
+                this.setPseudoUser(res.pseudo);
+                toastr.info("Welcome back !");
+                this.props.history.push("./profil");
+            }
+        })
+        .catch( err => {
+            toastr.error('Your email or password is not correct');
+        })
+    }
+
+    goCreateAccount = () => {
+        const dataToSend = {
+            "nameUser": this.state.firstname,
+            "lastname": this.state.lastname,
+            "pseudo": this.state.pseudo,
+            "age": this.getAge(),
+            "username": this.state.email,
+            "password": this.state.password
+        }
+
+        signupAction.createAccountAction(dataToSend).then((statut) => {
+            console.log(statut);
+            toastr.info('Welcome '+ this.state.pseudo);
+            this.goConnexion();
+        })
+        .catch ((err) => {
+            err ? toastr.error(err) : toastr.error('[BO]CREATE_ACCOUNT status: Failed !');
+        })
+
     }
 
 	render(){
    
-        console.log("value of createAccount "  + this.state.createAccount);
         let firstname = (<input style={styles.input} type="text" placeholder="Prénom" pattern="[A-Za-z]+" title="Uniquement des lettres" onBlur={event => this.setFirstname(event)} onChange={event => this.setFirstname(event)} value={this.state.firstname} required></input>);
         let lastname = (<input style={styles.input} type="text" placeholder="Nom"  pattern="[A-Za-z]+" title="Uniquement des lettres" onBlur={event => this.setLastname(event)} onChange={event => this.setLastname(event)} value={this.state.lastname} required></input>);
         let pseudo = (<input style={styles.input} type="text" placeholder="Pseudo" pattern="[A-Za-z0-9]+" title="Pas de chiffre ou caractères spéciaux" onBlur={event => this.setPseudo(event)} onChange={event => this.setPseudo(event)} value={this.state.pseudo} required></input>);

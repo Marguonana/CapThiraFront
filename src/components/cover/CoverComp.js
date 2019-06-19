@@ -6,7 +6,7 @@ import { Container, Row, Col } from 'reactstrap';
 import { getStyles } from './coverStyle'
 
 const coverService = require('./coverService');
-const coverProcess = require('./coverProcess');
+const coverAction = require('./coverAction');
 
 class CoverComp extends React.Component{
     constructor(props){
@@ -27,7 +27,7 @@ class CoverComp extends React.Component{
             console.log("Saisie non valide");
             return false;
         }
-        coverProcess.findUserProcess(document.getElementById("searchText").value)
+        coverAction.findUserAction( (document.getElementById("searchText").value).toLowerCase())
         .then( 
             (retour) => {
                 if(retour && retour.show){
@@ -49,7 +49,7 @@ class CoverComp extends React.Component{
                         "idSubscription" : this.state.data.user[0]._id,
                         "pseudoSubscription" : this.state.data.user[0].pseudo
                     };
-        coverProcess.subscribeProcess(info)
+        coverAction.subscribeAction(info)
             .then( result => {
                 if (result === 200){
                     toastr.success('Subscription done with success');

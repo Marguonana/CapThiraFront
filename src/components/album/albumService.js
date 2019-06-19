@@ -1,17 +1,16 @@
 const toastr = require('reactjs-toastr');
-const albumProcess = require('./albumProcess');
 
 module.exports = {
 
     getPhotos: (idUser) => {
         const myHeaders = new Headers();
         return new Promise((resolve)=>{
-        fetch(new Request('http://localhost:3000/images/showallimages/' + idUser, {
-            method: 'GET',
-            cache: 'default',
-          }),myHeaders)
-        .then((resultat) =>  resultat.json())
-        .then(resultat => resolve((resultat)))
+          fetch(new Request('http://localhost:3000/images/showallimages/' + idUser, {
+              method: 'GET',
+              cache: 'default',
+            }),myHeaders)
+          .then((resultat) =>  resultat.json())
+          .then(resultat => resolve((resultat)))
         });
     },
     
@@ -23,17 +22,19 @@ module.exports = {
           headers: {"Content-Type": "application/json"}
         };
         console.log(photo.taille)
-        fetch("http://localhost:3000/images/post/", requestOptions).then((response) => {
-          if (response.status === 200){
-            toastr.info("Adding with success !");
-          }
-          response.json();
-        }).then((result) => {
-        //   console.log(result);
-         // window.location.reload();
-        }).catch((error) => {
-          toastr.error("Post status : Failed !");
-        });
+        return new Promise((resolve,reject)=> {
+          fetch("http://localhost:3000/images/post/", requestOptions).then((response) => {
+            if (response.status === 200){
+                toastr.info("Adding with success !");
+            }
+              response.json();
+          }).then((result) => {
+            resolve();
+          }).catch((error) => {
+              toastr.error("Post status : Failed !");
+              reject();
+          });
+        })
     },
     
     deletePhoto: (e, el) => {
