@@ -9,7 +9,7 @@ import { Container, Row, Col } from 'reactstrap';
 
 const moment = require('moment');
 const actuService = require('./actuService');
-const actuProcess = require('./actuProcess');
+const actuAction = require('./actuAction');
 
 
 class ActuComp extends React.Component{
@@ -23,12 +23,6 @@ class ActuComp extends React.Component{
                 }},
                 {title: "Ma seconde image",img:{
                     data: "http://www.rangerwoodperiyar.com/images/joomlart/demo/default.jpg"
-                }},
-                {title: "third",img:{
-                    data: "http://www.rangerwoodperiyar.com/images/joomlart/demo/default.jpg"
-                }},
-                {title: "Enième img",img:{
-                    data: "http://www.rangerwoodperiyar.com/images/joomlart/demo/default.jpg"
                 }}
             ],
             selectedFile: null,
@@ -39,7 +33,7 @@ class ActuComp extends React.Component{
     }
 
     componentDidMount(){
-        actuProcess.getNewsProcess(this.state.idUser).then(dataSubscription => {
+        actuAction.getNewsAction(this.state.idUser).then(dataSubscription => {
             const data = new Array(1);
             if (dataSubscription.result && dataSubscription.result.listImgs && dataSubscription.result.listImgs.length > 0){
                 dataSubscription.result.listImgs.forEach( (element,i) => {
@@ -75,10 +69,10 @@ class ActuComp extends React.Component{
             return ( 
                 <Col key={index} style={styles.colStyle} >
                     <div className="titre-image" style={styles.description}>
-                        <i class="fa fa-user" aria-hidden="true"></i><span> {el.pseudo}</span>
+                        <i className="fa fa-user" aria-hidden="true"></i><span> {el.pseudo}</span>
                     </div>    
                     <img key={index + '_img'} src={ el.img ? el.img.data : ''} alt="" style={styles.imageStyle} width="500px" height="500px"/>
-                    <div style={styles.icons}><i class="fa fa-comment" aria-hidden="true" style={styles.iconComment}></i><i className="fa fa-thumbs-up" aria-hidden="true" style={styles.iconLike} onClick={(e) => actuProcess.addLikeProcess(e,el)}> {el.countLike}</i></div>
+                    <div style={styles.icons}><i className="fa fa-comment" aria-hidden="true" style={styles.iconComment}></i><i className="fa fa-thumbs-up" aria-hidden="true" style={styles.iconLike} onClick={(e) => actuAction.addLikeAction(e,el)}> {el.countLike}</i></div>
                 </Col>
             )
         });
