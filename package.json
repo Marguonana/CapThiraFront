@@ -42,7 +42,7 @@
     "reactstrap": "^7.1.0",
     "resolve-url-loader": "^3.0.0",
     "sass-loader": "^7.1.0",
-    "underscore": "^1.9.1",
+    "underscore": "^1.12.1",
     "webpack": "^4.29.0",
     "webpack-cli": "^3.2.1",
     "webpack-dev-server": "^3.1.14"
